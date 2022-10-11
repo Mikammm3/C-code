@@ -327,6 +327,7 @@
 #include<string.h>
 #include<stdlib.h>
 #include<windows.h>
+#include<time.h>
 
 
 
@@ -982,4 +983,214 @@
 //
 //	return 0;
 //}
+
+
+//简洁版：
+
+
+//int  main()
+//{
+//	int i = 0;
+//	int j = 0;
+//	for (i = 1; i < 10; i++)
+//	{
+//		for (j = 1; j <= i; j++)
+//		{
+//			printf("%d*%d=%-2d ", i, j, i * j);
+//			//在%与d中放数字表示打印n位的数字，如%2d，表示打印2位数字，不够的用空格补上，并向右边对齐
+//			//%-2d  同上，向左对齐
+//
+//		}
+//		printf("\n");
+//	}
+//
+//	return 0;
+//}
+
+
+
+//练习8.二分查找，在整型有序数组中查找一个数，找到了输出找到了，下标是   没找到输出找不到
+
+//int main()
+//{
+//	int arr[] = { 1,2,3,4,5,6,7,8,9,10 };
+//	int i = 0;
+//	scanf_s("%d", &i);
+//	int left = 0;
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	int right = sz - 1;
+//	int mid = 0;
+//	while (left <= right)
+//	{
+//		mid = (left + right) / 2;
+//		if (arr[mid] < i)
+//
+//			left = mid + 1;
+//
+//		else if (arr[mid] > i)
+//
+//			right = mid - 1;
+//
+//
+//		else
+//		{
+//			printf("找到了，下标是：%d\n", mid);
+//			break;
+//		}
+//	}
+//	if (left > right)
+//
+//		printf("找不到\n");
+//
+//
+//	return 0;
+//}
+
+
+//     多复习阶乘的计算！！！！
+//计算1！+2!+3!+.....+10!
+//int main()
+//{
+//	int a = 0;
+//	int b = 0;
+//	int c = 1;
+//	int d = 0;
+//	for (b = 1; b <= 10; b++)
+//	{
+//		int c = 1;
+//		for (a = 1;a<=b; a++)
+//		{
+//			c = c * a;
+//
+//		}
+//		d = d + c;
+//	}
+//
+//	printf("sum=%d\n", d);
+//	return 0;
+//
+//}
+
+
+//int main()
+//{
+//	char arr[] = { 0 };
+//	scanf_s("%s", &arr,20);
+//	int i = 1;
+//	while (i <= 3)
+//	{
+//		scanf_s("%s", &arr, 20);
+//		if (strcmp(arr, "123456") == 0)
+//			printf("登陆成功\n");
+//		else
+//			printf("密码错误\n");
+//		i++;
+//	}
+//	printf("退出登录\n");
+//	return 0;
+//}
+
+
+//猜数字小游戏
+//思路
+//1.菜单
+//2.游戏
+
+
+void menu()//设置菜单
+{
+	printf("**************************************\n");
+	printf("******   1.play      0.exit     ******\n"); 
+	printf("**************************************\n");
+	printf("请注意：\n1.该游戏数字的猜测范围是1-100\n2.按1开始游戏\n3.按0退出游戏\n4.祝您游戏愉快 ^o^\n");
+}
+
+void game()//设置游戏
+{
+	
+	int intput = 0;
+	int ret = 0;
+	game:
+	printf("欢迎进入游戏\n");
+	printf("游戏即将开始\n");
+	Sleep(2000);
+	ret=rand()%100+1;//设置随机数字范围
+	printf("请猜一个数字>:\n");
+	scanf_s("%d", &intput);
+	while (intput)
+	{
+		
+		if (intput > ret)
+		{
+			printf("猜大了\n");
+			
+		}
+		else if (intput < ret)
+		{
+			printf("猜小了\n");
+			
+		}
+		else
+		{
+			printf("恭喜你！猜对了！\n");
+			Sleep(3000);
+			printf("如果你想继续游戏，请按1\n如果你想退出游戏，请按0\n请输入>:");
+			scanf_s("%d", &intput);
+			if (intput == 1)
+				goto game;
+			if (intput == 0)
+				break;
+		}
+		scanf_s("%d", &intput);
+	}
+}
+
+int main()
+{
+	menu();//调用菜单
+	int intput = 0;
+	srand((unsigned int)time(NULL));//设置随机数的一个起点
+	scanf_s("%d",&intput);
+	
+	while (intput)
+	{
+		
+		if (intput == 1)
+		{
+			game();//调用游戏
+			break;
+		}
+		
+		else if(intput!=0)
+		{
+			
+			int i = 0;
+			for (i = 0; i < 3; i++)
+			{
+				printf("输入错误\n");
+				scanf_s("%d", &intput);
+				if (intput == 1)
+					game();
+				if (intput == 0)
+				{
+					printf("退出游戏\n");
+					break;
+				}
+			}
+			break;
+		}
+	}
+
+	system("cls");
+	if (intput == 0)
+		
+		printf("退出游戏\n");
+		
+		
+	return 0;
+}
+
+
+
+
 
