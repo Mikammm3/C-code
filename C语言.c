@@ -1310,7 +1310,13 @@
 //交换
 //错误版：
 
-//void swap(int x, int y)
+
+//当实参传给形参的时候
+//形参其实是实参的一份临时拷贝
+//对形参的修改是不会改变实参的
+ 
+
+//void swap(int x, int y)//传值调用
 //{
 //	int tmp = 0;
 //	tmp = x;
@@ -1328,7 +1334,7 @@
 //	int a = 10;
 //	int b = 20;
 //	printf("交换前，a为%d,b为%d\n",a,b);
-//	swap(a, b);
+//	swap(a, b);//swap 交换的意思
 //	printf("交换后，a为%d,b为%d\n",a,b);
 //
 //
@@ -1339,27 +1345,378 @@
 
 //更正版
 
-void swap(int*pa, int*pb)
+//void swap(int*pa, int*pb)
+//{
+//	int tmp = 0;
+//	tmp = *pa;
+//	*pa = *pb;
+//	*pb = tmp;
+//}
+//
+//
+//
+//
+//int main()
+//{
+//	int a = 10;
+//	int b = 20;
+//	printf("交换前，a为%d，b为%d\n",a,b);
+//	//调用函数，传址调用（改变外部某些变量使用传址调用）
+//	swap(&a, &b);//别忘记&
+//
+//	printf("交换后，a为%d，b为%d\n",a,b);
+//
+//
+//	return 0;
+//}
+
+//练习1.判断一个数是否为素数
+
+//自己敲的代码
+//int judge_primenum(int x)
+//{
+//	int ret = 0;
+//	int j = 0;
+//	for (j = 2; j <= sqrt(x); j++)
+//	{
+//		if((ret = x % j)==0);
+//		break;
+//	}
+//	if(ret!=0||x==2||x==3)
+//		printf("该数为素数");
+//	else
+//		printf("该数不是素数");
+//	return 0;
+//}
+//
+//
+//
+//int main()
+//{
+//	int i = 0;
+//	scanf_s("%d",&i);
+//	judge_primenum(i);
+//
+//	return 0;
+//}
+
+//改进版:
+
+//int is_prime(int x)
+//{
+//	int j = 0;
+//	for (j = 2; j <= sqrt(x); j++)//用sqrt要引用math.h
+//	{
+//		 int ret = 0;
+//		 ret = x % j;
+//		 if (ret == 0)
+//		 return 0;
+//	}
+//	return 1;//就只有一种情况会跳出循环
+//}
+//
+//
+//
+//int main()
+//{
+//	int i = 0;
+//	//打印100-200的素数
+//	for (i = 100; i <= 200; i++)
+//	{
+//		is_prime(i);//判断素数的专用
+//		if (is_prime(i)== 1)//是素数就返回1
+//			printf("%d ",i);
+//
+//	}
+//
+//	return 0;
+//}
+
+
+//练习2.写一个函数判断一年是否为闰年
+
+//int is_leap_year(int n)
+//{
+//	if ((n % 4 == 0 && n % 100 != 0) || n % 400 == 0)
+//		return 1;
+//	else
+//		return 0;
+//	
+//}
+//
+//
+//int main()
+//{
+//	int i = 0;
+//	scanf_s("%d",&i);
+//	is_leap_year(i);
+//	if (1 == is_leap_year(i))
+//		printf("是闰年\n");
+//	return 0;
+//}
+
+
+//练习3.写一个函数，二分查找，在一个有序数组中查找具体的某个数
+//找到了就返回这个数的下标，找不到的返回-1
+
+
+
+////                 本质上arr是一个指针   
+//int binary_search(int arr[], int k,int sz)//用int arr[]接收数组
+//{
+//	
+//	int left = 0;
+//	//更正错误的方法就是在main函数中计算数组的个数，再主动传输进binary_search
+//	int right = sz-1;
+//	while(left<=right)
+//	{
+//		int mid = (left + right) / 2;
+//		if (arr[mid] < k)
+//			left = mid + 1;
+//		if (arr[mid] > k)
+//			right = mid - 1;
+//		if (arr[mid] == k)
+//		{
+//			return mid;
+//			break;
+//		}
+//
+//	}
+//	
+//		return -1;
+//}
+//
+//
+//
+//
+//int main()
+//{
+//	int arr[] = { 1,2,3,4,5,6,7,8,9,10 };
+//	int k = 0;
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	scanf_s("%d",&k);//  传递过去的是数组arr首元素的地址
+//	int ret=binary_search(arr,k,sz);//二分查找,用ret来接收二分查找的数字
+//	if (ret == -1)
+//	printf("找不到\n");
+//	else
+//	printf("找到了，下标是：%d\n", ret);
+//	return 0;
+//}
+
+//练习四
+
+//void Add(int* p)
+//{
+//	(*p)++;
+//}
+//
+//int main()
+//{
+//	int num = 0;
+//	Add(&num);
+//	printf("%d ", num);
+//	return 0;
+//}
+
+//练习5.将大写字母转化为小写字母，将小写转大写，数字就不打印
+
+//int main()
+//{
+//	char i = 0;
+//	scanf_s("%c",&i,20);
+//	if (i >= 65 && i <= 90)
+//	{
+//		i = i + 32;
+//		printf("%c", i);
+//	}
+//	else if (i >= 97 && i <= 122)
+//	{
+//		i = i - 32;
+//		printf("%c", i);
+//	}
+//	else
+//		;
+//
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int len = 0;
+//	//1.
+//	//len = strlen("abc");
+//	//printf("%d\n", len);
+//	//2.
+//	printf("%d\n",strlen("abc"));//链式访问：将一个函数的返回值作为另一个函数的参数
+//	return 0;
+//}
+
+//int main()
+//{   //              返回值为1       返回值为2
+//	printf("%d", printf("%d", printf("%d", 43)));//链式访问
+//	//打印结果为4321
+//	return 0;
+//}
+
+////函数声明（一般放在头文件中），先声明再使用
+//
+//int Add(int, int);
+//
+//
+//
+//int main()
+//{
+//	int a = 10;
+//	int b = 20;
+//	int sum = 0;
+//	//函数调用
+//	sum = Add(a, b);
+//	printf("%d\n", sum);
+//	return 0;
+//}
+//
+//
+////函数定义（一般放在源文件里），函数的实现
+//int Add(int x, int y)
+//{
+//	int z = x + y;
+//	return z;
+//}
+
+
+////作业1.交换两个数
+//
+//void swap(int *x, int* y)
+//{
+//	int tmp = 0;
+//	tmp = *x;
+//	*x = *y;
+//	*y = tmp;
+//
+//}
+//
+//int main()
+//{
+//	int a = 10;
+//	int b = 20;
+//	printf("%d %d\n", a, b);
+//	swap(&a, &b);
+//	printf("%d %d\n", a, b);
+//
+//	return 0;
+//}
+
+
+//作业2.实现一个函数，打印乘法口诀表
+
+//void mul(int x)
+//{
+//	int j = 0;
+//	int ret = 0;
+//    int a=0;
+//	for (a = 1;a<=x; a++)
+//	{
+//		for (j = 1; j <= a; j++)
+//		{
+//			ret = a * j;
+//			printf("%d*%d=%-3d ",a,j,ret);
+//		}
+//		printf("\n");
+//	}
+//}
+//
+//
+//int main()
+//{
+//	int i = 0;
+//	scanf_s("%d",&i);
+//	mul(i);
+//	
+//	return 0;
+//}
+
+
+//递归练习1.输入一个数，把这个数的每个数按照顺序输出，如1234 则输出1 2 3 4
+
+//void print(int i)
+//{
+//
+//	if(i>9)//递归条件
+//	print(i / 10);//每一次都更加接近限制条件
+//	printf("%d ", i%10);//打印就%10
+//	
+//}
+//
+//
+//
+//int main()
+//{
+//	int i = 0;
+//	scanf_s("%d",&i);
+//	print(i);
+//	return 0;
+//}
+
+
+//递归练习2.求字符串长度
+
+//int my_strlen(char*arr)//所以用指针接收
+//{
+//	if (*arr != '\0')//判断的是首元素的内容是否为\0，*arr存放的是内容
+//		return 1 + my_strlen(arr+1);//arr存放的是地址
+//	else
+//		return 0;
+//
+//
+//}
+//
+//
+//
+//
+//int main()
+//{
+//	char arr[] = "abc";
+//	int len=my_strlen(arr);//数组传参，传过去的是第一个元素的地址
+//	printf("len=%d\n",len);
+//	return 0;
+//}
+
+
+//作业1.青蛙跳台阶
+
+
+
+
+
+
+
+
+
+//作业2.汉诺塔移动盘子
+//思想：
+//1.将盘子分为两部分，第一部分是n-1，也就是除了最底下的盘子以外的盘子，第二部分就是1，也就是最下面的盘子
+//2.然后将n-1那个部分的盘子从A借助C移动到B，//这一步借助递归调用
+//3.再将最大的盘子从A移动到C，//这个就直接移动
+//4.最后让那n-1个盘子从B借助A移动到C，//同理，这一步也需要借助递归
+//5.另一种：就是只有一个盘子，就直接移
+
+void hanoi(int n, char A, char B, char C)
 {
-	int tmp = 0;
-	tmp = *pa;
-	*pa = *pb;
-	*pb = tmp;
+	if (n == 1)
+		printf(" %c -> %c \n",A,C);//这一部分必须得用%c来传，不能直接手打印A->C
+	else
+	{
+		hanoi(n - 1, A, C, B);
+		printf(" %c -> %c \n",A,C);//这个也同理
+		hanoi(n - 1, B, A, C);
+	}
 }
-
-
-
 
 int main()
 {
-	int a = 10;
-	int b = 20;
-	printf("交换前，a为%d，b为%d\n",a,b);
-
-	swap(&a, &b);//别忘记&
-
-	printf("交换后，a为%d，b为%d\n",a,b);
-
-
+	int n = 0;
+	scanf_s("%d",&n);
+	hanoi(n,'A','B','C');
 	return 0;
 }
