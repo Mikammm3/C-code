@@ -1684,6 +1684,25 @@
 
 
 //作业1.青蛙跳台阶
+//int jump_floor(int n)
+//{
+//	int z = 1;
+//	if (n < 2)
+//		return z;
+//	else
+//		z = jump_floor(n - 1) + jump_floor(n - 2);//这个简单，就是跳到第n级台阶的时候，起点就只有n-1，或者n-2，
+//	return z;//                                     这样的话，只要把跳n-2个台阶的方法+n-1台阶的方法就是n台阶的方法
+//}
+//
+//
+//int main()
+//{
+//	int n = 0;
+//	scanf_s("%d",&n);
+//	int ret=jump_floor(n);
+//	printf("ret=%d\n",ret);
+//	return 0;
+//}
 
 
 
@@ -1701,22 +1720,22 @@
 //4.最后让那n-1个盘子从B借助A移动到C，//同理，这一步也需要借助递归
 //5.另一种：就是只有一个盘子，就直接移
 
-void hanoi(int n, char A, char B, char C)
-{
-	if (n == 1)
-		printf(" %c -> %c \n",A,C);//这一部分必须得用%c来传，不能直接手打印A->C
-	else
-	{
-		hanoi(n - 1, A, C, B);
-		printf(" %c -> %c \n",A,C);//这个也同理
-		hanoi(n - 1, B, A, C);
-	}
-}
-
-int main()
-{
-	int n = 0;
-	scanf_s("%d",&n);
-	hanoi(n,'A','B','C');
-	return 0;
-}
+//void hanoi(int n, char A, char B, char C)
+//{
+//	if (n == 1)
+//		printf(" %c -> %c \n",A,C);//这一部分必须得用%c来传，不能直接手打印A->C
+//	else
+//	{
+//		hanoi(n - 1, A, C, B);
+//		printf(" %c -> %c \n",A,C);//这个也同理
+//		hanoi(n - 1, B, A, C);
+//	}
+//}
+//
+//int main()
+//{
+//	int n = 0;
+//	scanf_s("%d",&n);
+//	hanoi(n,'A','B','C');
+//	return 0;
+//}
