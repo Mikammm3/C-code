@@ -1779,18 +1779,130 @@
 //}
 
 
+//int main()
+//{
+//	 // 3  3行 4  4列
+//	int arr[3][4] = { 0 };//二维数组
+//	int arr2[][4] = { {1,2},{3,4} };//二维数组列不可省略
+//	int arr3[3][4] = { {1,2,3},{4} };
+//	//arr3
+//	//行和列都从0开始
+//	//    0列 1列 2列 3列
+//	//0行   1  2  3   0
+//	//1行   4  0  0   0
+//	//2行   0  0  0   0
+//
+//	return 0;
+//}
+
+
+#define ROW 3  //定义棋盘的行
+#define COL 3  //定义棋盘的列
+
+
+void menu()
+{
+	printf("**************************************\n");
+	printf("****     1.play       0.exit      ****\n");
+	printf("**************************************\n");
+}
+
+
+//初始化棋盘
+void InitBoard(char board[ROW][COL], int row, int col)
+{
+	int j = 0;
+	int i = 0;
+	for (i = 0; i < ROW; i++)
+	{
+		for (j = 0; j < COL; j++)
+		{
+			board[i][j] = ' ';
+		}
+	}
+}
+
+
+//   |   |   
+//---|---|---
+//   |   |   
+//---|---|---
+//   |   |   
+
+//打印棋盘
+void DisplayBoard(char board[ROW][COL], int row, int col)
+{
+	int i = 0;
+	for (i = 0; i < ROW; i++)
+	{
+		//打印数据
+		int j = 0;
+		for (j = 0; j < COL; j++)
+		{
+			printf(" %C ", board[i][j]);
+			if (j < COL - 1)
+				printf("|");
+		}
+		printf("\n");
+		int z = 0;
+		if (i < ROW - 1)
+		{
+			for (z = 0; z < COL; z++)
+			{
+				//打印分割线
+				printf("---");
+				if (z < COL - 1)
+					printf("|");
+			}
+			printf("\n");
+		}
+	}
+}
+
+
+void board()
+{
+	//数组，存放棋盘的信息
+	char board[ROW][COL] = { 0 };
+	//初始化棋盘,传数组，行，列
+	InitBoard(board, ROW, COL);
+	//打印棋盘，传数组，行，列
+	DisplayBoard(board, ROW, COL);
+}
+
+void game()
+{
+	printf("欢迎进入游戏\n");
+	board();
+
+
+
+
+}
+
+
+
 int main()
 {
-	 // 3  3行 4  4列
-	int arr[3][4] = { 0 };//二维数组
-	int arr2[][4] = { {1,2},{3,4} };//二维数组列不可省略
-	int arr3[3][4] = { {1,2,3},{4} };
-	//arr3
-	//行和列都从0开始
-	//    0列 1列 2列 3列
-	//0行   1  2  3   0
-	//1行   4  0  0   0
-	//2行   0  0  0   0
+	int input = 0;
+	do
+	{
+		menu();
+		printf("请输入:>\n");
+		scanf_s("%d", &input);
+		switch (input)
+		{
+		case 1:
+			game();
+			break;
+		case 0:
+			printf("退出游戏\n");
+			break;
+		default:
+			printf("输入错误，请重新输入\n");
+			break;
+		}
+	} while (input);
 
 	return 0;
 }
