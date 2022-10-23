@@ -2120,181 +2120,325 @@
 
 
 
-#define ROW 9
-#define COL 9
+//#define ROW 9
+//#define COL 9
+//
+//
+//#define ROWS ROW+2
+//#define COLS COL+2
+//
+//
+//#define EASY_COUNT 10
+//
+//
+//void menu()
+//{
+//	printf("************************************\n");
+//	printf("*******        1.play       ********\n");
+//	printf("*******        0.exit       ********\n");
+//	printf("************************************\n");
+//}
+//
+//void InitBoard(char board[ROWS][COLS], int rows, int cols, int set)
+//{
+//	int i = 0;
+//	int j = 0;
+//	for (i = 0; i < rows; i++)
+//	{
+//
+//		for (j = 0; j < cols; j++)
+//		{
+//			board[i][j] = set;
+//
+//		}
+//
+//	}
+//}
+//
+//
+//void DisplayBoard(char board[ROWS][COLS], int row, int col)
+//{
+//	int i = 0;
+//	int j = 0;
+//	printf("------------扫雷游戏-------------\n");
+//	//打印列号
+//	for (i = 0; i <= col; i++)
+//	{
+//		printf("%d ",i);
+//	}
+//	printf("\n");
+//	for (i = 1; i <= row; i++)
+//	{
+//		//打印行号
+//		printf("%d ",i);
+//		for (j = 1; j <= col; j++)
+//		{
+//			
+//			printf("%c ",board[i][j]);
+//
+//		}
+//		printf("\n");
+//	}
+//
+//	printf("------------扫雷游戏-------------\n");
+//}
+//
+//void SetMine(char mine[ROWS][COLS], int row, int col)
+//{
+//	int count = EASY_COUNT;
+//	while (count)
+//	{
+//		int x = rand() % ROW + 1;
+//		int y = rand() % COL + 1;
+//		if (mine[x][y] == '0')
+//		{
+//			mine[x][y] = '1';
+//			count--;
+//		}
+//	}
+//
+//}
+//
+//
+//int get_mine_count(char mine[ROWS][COLS], int x, int y)
+//
+//{
+//	return mine[x - 1][y] +
+//		mine[x - 1][y - 1] +
+//		mine[x - 1][y + 1] +
+//		mine[x][y - 1] +
+//		mine[x][y + 1] +
+//		mine[x + 1][y - 1] +
+//		mine[x + 1][y] +
+//		mine[x + 1][y + 1] - 8 * '0';
+//
+//}
+//
+//
+//void FindMine(char mine[ROWS][COLS], char show[ROWS][COLS], int row, int col)
+//{
+//	int x = 0;
+//	int y = 0;
+//	int win = 0;
+//	while (win<ROW*COL- EASY_COUNT)
+//	{
+//		printf("请输入要查找的坐标:>\n");
+//		scanf_s("%d%d", &x, &y);
+//		if (x >= 1 && x <= 9 && y >= 1 && y <= 9)
+//		{
+//			if (mine[x][y] == '1')
+//			{
+//				printf("很遗憾，你被炸死了\n");
+//				DisplayBoard(mine, ROW, COL);
+//				break;
+//			}
+//			else
+//			{
+//				int count = get_mine_count(mine, x, y);//统计雷
+//				show[x][y] = count + '0';
+//				DisplayBoard(show, ROW, COL);
+//				win++;
+//			}
+//
+//		}
+//		else
+//			printf("坐标非法，请重新输入:>\n");
+//	}
+//	if (win == ROW * COL - EASY_COUNT)
+//	{
+//		DisplayBoard(mine, ROW, COL);
+//		printf("恭喜您！扫雷成功！！！\n");
+//	}
+//}
+//
+//
+//void game()
+//{
+//	//创建棋盘，
+//	//这个mine是放雷的
+//	char mine[ROWS][COLS] = { 0 };
+//	//这个show是放查找出的雷的数据的
+//	char show[ROWS][COLS] = { 0 };
+//	//初始化棋盘
+//	InitBoard(mine,ROWS,COLS,'0');
+//	InitBoard(show,ROWS,COLS,'*');
+//	//打印棋盘
+//	DisplayBoard(show, ROW, COL);
+//	//布置雷
+//	SetMine(mine,ROW,COL);
+//	//DisplayBoard(mine, ROW, COL);
+//	//排查雷
+//	FindMine(mine, show,ROW,COL);
+//}
+//
+//
+//
+//int main()
+//{
+//	srand((unsigned int)time(NULL));
+//	int input = 0;
+//	do
+//	{
+//		menu();
+//		printf("请选择:>\n");
+//		scanf_s("%d",&input);
+//		switch(input)
+//		{
+//			case 1:
+//				game();
+//				break;
+//			case 0:
+//				printf("退出游戏\n");
+//				break;
+//			default:
+//				printf("输入错误，请重新输入:>\n");
+//		}
+//
+//	} while (input);
+//
+//	return 0;
+//}
 
 
-#define ROWS ROW+2
-#define COLS COL+2
-
-
-#define EASY_COUNT 10
-
-
-void menu()
-{
-	printf("************************************\n");
-	printf("*******        1.play       ********\n");
-	printf("*******        0.exit       ********\n");
-	printf("************************************\n");
-}
-
-void InitBoard(char board[ROWS][COLS], int rows, int cols, int set)
-{
-	int i = 0;
-	int j = 0;
-	for (i = 0; i < rows; i++)
-	{
-
-		for (j = 0; j < cols; j++)
-		{
-			board[i][j] = set;
-
-		}
-
-	}
-}
-
-
-void DisplayBoard(char board[ROWS][COLS], int row, int col)
-{
-	int i = 0;
-	int j = 0;
-	printf("------------扫雷游戏-------------\n");
-	//打印列号
-	for (i = 0; i <= col; i++)
-	{
-		printf("%d ",i);
-	}
-	printf("\n");
-	for (i = 1; i <= row; i++)
-	{
-		//打印行号
-		printf("%d ",i);
-		for (j = 1; j <= col; j++)
-		{
-			
-			printf("%c ",board[i][j]);
-
-		}
-		printf("\n");
-	}
-
-	printf("------------扫雷游戏-------------\n");
-}
-
-void SetMine(char mine[ROWS][COLS], int row, int col)
-{
-	int count = EASY_COUNT;
-	while (count)
-	{
-		int x = rand() % ROW + 1;
-		int y = rand() % COL + 1;
-		if (mine[x][y] == '0')
-		{
-			mine[x][y] = '1';
-			count--;
-		}
-	}
-
-}
-
-
-int get_mine_count(char mine[ROWS][COLS], int x, int y)
-
-{
-	return mine[x - 1][y] +
-		mine[x - 1][y - 1] +
-		mine[x - 1][y + 1] +
-		mine[x][y - 1] +
-		mine[x][y + 1] +
-		mine[x + 1][y - 1] +
-		mine[x + 1][y] +
-		mine[x + 1][y + 1] - 8 * '0';
-
-}
-
-
-void FindMine(char mine[ROWS][COLS], char show[ROWS][COLS], int row, int col)
-{
-	int x = 0;
-	int y = 0;
-	int win = 0;
-	while (win<ROW*COL- EASY_COUNT)
-	{
-		printf("请输入要查找的坐标:>\n");
-		scanf_s("%d%d", &x, &y);
-		if (x >= 1 && x <= 9 && y >= 1 && y <= 9)
-		{
-			if (mine[x][y] == '1')
-			{
-				printf("很遗憾，你被炸死了\n");
-				DisplayBoard(mine, ROW, COL);
-				break;
-			}
-			else
-			{
-				int count = get_mine_count(mine, x, y);//统计雷
-				show[x][y] = count + '0';
-				DisplayBoard(show, ROW, COL);
-				win++;
-			}
-
-		}
-		else
-			printf("坐标非法，请重新输入:>\n");
-	}
-	if (win == ROW * COL - EASY_COUNT)
-	{
-		DisplayBoard(mine, ROW, COL);
-		printf("恭喜您！扫雷成功！！！\n");
-	}
-}
-
-
-void game()
-{
-	//创建棋盘，
-	//这个mine是放雷的
-	char mine[ROWS][COLS] = { 0 };
-	//这个show是放查找出的雷的数据的
-	char show[ROWS][COLS] = { 0 };
-	//初始化棋盘
-	InitBoard(mine,ROWS,COLS,'0');
-	InitBoard(show,ROWS,COLS,'*');
-	//打印棋盘
-	DisplayBoard(show, ROW, COL);
-	//布置雷
-	SetMine(mine,ROW,COL);
-	//DisplayBoard(mine, ROW, COL);
-	//排查雷
-	FindMine(mine, show,ROW,COL);
-}
 
 
 
-int main()
-{
-	srand((unsigned int)time(NULL));
-	int input = 0;
-	do
-	{
-		menu();
-		printf("请选择:>\n");
-		scanf_s("%d",&input);
-		switch(input)
-		{
-			case 1:
-				game();
-				break;
-			case 0:
-				printf("退出游戏\n");
-				break;
-			default:
-				printf("输入错误，请重新输入:>\n");
-		}
 
-	} while (input);
+//移位操作符：不要移动负数位
+//a=a>>-2  ( x )
+//只能作用于整数
 
-	return 0;
-}
+
+
+
+//int main()
+//{
+//
+//	//左移操作符（有*2的效果）：
+//	//左边丢弃，右边补0
+//	int a = 16;
+//	int b = a << 1;
+//	//00000000000000000000000000010000  ---a
+//	//00000000000000000000000000100000 ----b
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	//右移操作符(有/2的效果)
+//
+//	//1.算术右移（基本上全是算术右移）
+//	//右边丢弃，左边补符号位（正数补0，负数补1）
+//	int a = 16;
+//	int b = a >> 1;
+//	//00000000000000000000000000010000  ---a
+//	//00000000000000000000000000001000  ---b
+//
+//	return 0;
+//}
+
+
+
+//位操作符：作用于整数
+// 
+// 
+// 
+//按位与&(与数学的真假命题相似，是并且)  1&1=1
+//按位或|（或者）
+//按位异或^（相同为0，相异为1）
+
+
+//int main()
+//{
+//
+//	//按(2进制)位取反    ~
+//	int a = 0;// 00000000000000000000000000000000补码
+//	int b = ~a;//11111111111111111111111111111111补码
+//	printf("%d\n",b);//打印原码    11111111111111111111111111111110  反码   10000000000000000000000000000001  原码
+//	return 0;
+//} 
+
+
+
+
+////逻辑与和或的特点
+//int main()
+//{
+//
+//	int i = 0, a = 0, b = 2, c = 3, d = 4;
+//	
+//	
+//	i = a++ || ++b || d++;
+//	printf("a=%d,b=%d,c=%d,d=%d\n", a, b, c, d);
+//	//打印结果是多少？ //结果为1 3 3 4，因为当||左边为真时，将不再计算||右边的式子
+//	 
+//	 
+//	//i = a++ && ++b && d++;
+//	printf("a=%d,b=%d,c=%d,d=%d\n",a,b,c,d);
+//	//打印结果是多少？                         //结果为1 2 3 4 ，因为当  &&的左边为假时，就不再运算&&右边的式子
+//	
+//	
+//	return 0;
+//}
+
+
+
+
+//逗号表达式：用,隔开的表达式，从左到右依次计算，整个表达式的结果为最后一个表达式的结果
+
+
+
+//int main()
+//{
+//	int a = get_val();
+//	count_val(a);
+//	/*while (a > 0)
+//	{
+//		a = get_val();
+//		count_val(a);
+//	}*/
+//
+//
+//	//上方的while循环与下方的while循环作用相同，只是下方的更为简洁
+//	while (a = get_val(), count_val(a), a > 0)
+//	{
+//		
+//	}
+//	return 0;
+//}
+
+
+
+
+
+//创建一个结构体类型-struct Stu
+
+
+//struct Stu
+//{
+//
+//	//成员变量
+//	char name[20];
+//	int age;
+//	char id[20];
+//
+//};
+//
+//int main()
+//{
+//	//使用struct Stu结构体类型创建了一个学生对象s1，并且初始化
+//	struct Stu s1 = { "张三",20,"20190308" };
+//
+//	//结构体.成员名
+//	printf("%s\n",s1.name);
+//	printf("%d\n", s1.age);
+//	printf("%s\n", s1.id);
+//
+//	//结构体指针.成员名
+//	struct Stu* p = &s1;
+//	printf("%s\n",p->name);
+//	printf("%d\n", p->age);
+//	printf("%s\n", p->id);
+//	return 0;
+//}
