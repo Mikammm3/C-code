@@ -2386,6 +2386,7 @@
 
 
 //逗号表达式：用,隔开的表达式，从左到右依次计算，整个表达式的结果为最后一个表达式的结果（只有一个实参）
+//(a,b)；实参是b
 
 
 
@@ -2655,6 +2656,299 @@
 
 
 ////指针数组----存放指针的数组
+// 例如：
 //int a = 0;
 //int b = 0;
 //int* arr[2] = { &a,&b };
+
+
+//int my_strlen(char* arr)
+//{
+//	char* start = arr;//用指针接收首地址
+//	char* end = arr;//指针初始化
+//	while (*end != '\0')
+//	{
+//		end++;
+//	}
+//	return end - start;
+//}
+//
+//
+//int main()
+//{
+//	char arr[] = "hello";
+//	int len = my_strlen(arr);
+//	printf("%d\n",len);
+//	return 0;
+//}
+
+
+//局部变量在栈中保存
+
+
+//复习冒泡排序,升序
+//void bubble_sort(int*arr,int sz )
+//{
+//	int i = 0;
+//	int j = 0;
+//	for (i = 0; i < sz - 1; i++)
+//	{
+//		for (j = 0; j < sz - 1 - i; j++)
+//		{
+//			if (arr[j - 1] > arr[j])
+//			{
+//				int tmp = 0;
+//				tmp = arr[j - 1];
+//				arr[j - 1] = arr[j];
+//				arr[j] = tmp;
+//			}
+//		}
+//	}
+//
+//}
+//
+//
+//int main()
+//{
+//	int arr[] = { 1,5,3,2,6,4,7,9,8,10 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	bubble_sort(arr,sz);
+//	int i = 0;
+//	for (i = 0; i < sz; i++)
+//    {
+//		printf("%d ",arr[i]);
+//	}
+//	return 0;
+//}
+
+
+
+
+//创建一个整型数组，完成对数组的操作
+//1.init  初始化数组为全0
+//2.print  打印数组每个元素
+//3.reverse  完成每个元素逆置
+
+//void reverse(int arr[], int sz)
+//{
+//	int i = 0;
+//	int j = sz-1;
+//	while (i <= j)
+//	{
+//		int tmp = 0;
+//		tmp = arr[i];
+//		arr[i] = arr[j];
+//		arr[j] = tmp;
+//		i++;
+//		j--;
+//
+//	}
+//
+//}
+//
+//void print(int arr[], int sz)
+//{
+//	int i = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//		printf("%d ",arr[i]);
+//	}
+//	printf("\n");
+//}
+//
+//
+//void init(int arr[], int sz)
+//{
+//	int i = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//		arr[i] = 0;
+//	}
+//}
+//
+//int main()
+//{
+//	int arr[] = { 1,2,3,4,5,6,7,8,9,10 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	reverse(arr,sz);
+//	print(arr,sz);
+//	init(arr, sz);
+//	print(arr, sz);
+//	return 0;
+//}
+
+
+//将数组A的内容和数组B的内容进行交换
+
+//void exchange(int arr1[], int arr2[], int sz1, int sz2)//传数组的时候把[]带上！！！
+//{
+//	int i = 0;
+//	for (i = 0; i < sz1; i++)
+//	{
+//		int tmp = 0;
+//		tmp = arr1[i];
+//		arr1[i] = arr2[i];
+//		arr2[i] = tmp;
+//	}
+//
+//}
+//
+//int main()
+//{
+//	int arr1[] = { 1,2,3,4,5 };
+//	int arr2[] = { 6,7,8,9,10 };
+//	int sz1 = sizeof(arr1) / sizeof(arr1[0]);
+//	int sz2 = sizeof(arr1) / sizeof(arr1[0]);
+//	int i = 0;
+//	printf("交换前：\n");
+//	for (i = 0; i < sz1; i++)
+//	{
+//		printf("%d ", arr1[i]);
+//
+//	}
+//	printf("\n");
+//	for (i = 0; i < sz1; i++)
+//	{
+//		printf("%d ", arr2[i]);
+//
+//	}
+//	printf("\n");
+//	exchange(arr1,arr2,sz1,sz2);
+//	printf("交换后：\n");
+//	for (i = 0; i < sz1; i++)
+//	{
+//		printf("%d ", arr1[i]);
+//
+//	}
+//	printf("\n");
+//	for (i = 0; i < sz1; i++)
+//	{
+//		printf("%d ", arr2[i]);
+//
+//	}
+//	return 0;
+//}
+
+
+//全局变量不初始化，默认是0
+//sizeof()返回的是无符号数
+
+//求程序运行结果
+
+
+//int i;//全局变量不初始化，默认是0
+//
+//int main()
+//{
+//
+//	i--;//  i = -1 
+//	if (i > sizeof(i))//sizeof()---计算变量/类型所占内存的大小  >=0   所以是无符号数
+//		printf(">\n");//所以比较大小时会将  -1  转化为无符号数 100000.........0000001（原码） 补码就更大了
+//	else              //所以打印的是  >
+//		printf("<\n");
+//	return 0;
+//}
+
+
+
+////求一个数字2进制中1的个数
+// 错误：
+//int main()
+//{
+//
+//	int i = 0;
+//	scanf_s("%d",&i);
+//	int j = 0;
+//	int count = 0;
+//	while (i > 1)
+//	{
+//		if (1 == i % 2)
+//			count++;
+//		i = i / 2;
+//	}
+//	if (i == 1)
+//		count++;
+//	printf("%d",count);
+//	return 0;
+//}
+
+
+
+
+//正确版1：
+
+
+//int count_bit_one(unsigned int n)
+//{
+//	int count = 0;
+//	while (n)
+//	{
+//		if (n % 2 == 1)
+//			count++;
+//		n /= 2;
+//	}
+//	return count;
+//
+//}
+//
+//int main()
+//{
+//	int a = 0;
+//	scanf_s("%d",&a);
+//	int count=count_bit_one(a);
+//	printf("count=%d\n",count);
+//	return 0;
+//}
+
+//正确版2：
+
+
+//int count_bit_one(int i)
+//{
+//	int j = 0;
+//	int count = 0;
+//	for (j = 0; j < 32; j++)
+//	{
+//		if ((i >> j) & 1 == 1)
+//		{
+//			count++;
+//		}
+//	}
+//	return count;
+//}
+//
+//int main()
+//{
+//	int i = 0;
+//	scanf_s("%d",&i);
+//	int count=count_bit_one(i);
+//	printf("%d\n",count);
+//	return 0;
+//}
+
+
+////最优高效率版：
+//
+//
+////n=n&(n-1)   每执行一次式子，就会让2进制最右边的1消失
+//int count_bit_one(int n)
+//{
+//	
+//	int count = 0;
+//	while (n)
+//	{
+//		n = n & (n - 1);
+//		count++;
+//	}
+//
+//	return count;
+//}
+//
+//int main()
+//{
+//	int i = 0;
+//	scanf_s("%d", &i);
+//	int count = count_bit_one(i);
+//	printf("%d\n", count);
+//	return 0;
+//}
