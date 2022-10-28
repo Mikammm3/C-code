@@ -2724,7 +2724,7 @@
 
 
 
-//创建一个整型数组，完成对数组的操作
+//练习1.创建一个整型数组，完成对数组的操作
 //1.init  初始化数组为全0
 //2.print  打印数组每个元素
 //3.reverse  完成每个元素逆置
@@ -2778,7 +2778,7 @@
 //}
 
 
-//将数组A的内容和数组B的内容进行交换
+//练习2.将数组A的内容和数组B的内容进行交换
 
 //void exchange(int arr1[], int arr2[], int sz1, int sz2)//传数组的时候把[]带上！！！
 //{
@@ -2833,7 +2833,7 @@
 //全局变量不初始化，默认是0
 //sizeof()返回的是无符号数
 
-//求程序运行结果
+//练习3.求程序运行结果
 
 
 //int i;//全局变量不初始化，默认是0
@@ -2851,7 +2851,7 @@
 
 
 
-////求一个数字2进制中1的个数
+////练习4.求一个数字2进制中1的个数
 // 错误：
 //int main()
 //{
@@ -2952,3 +2952,383 @@
 //	printf("%d\n", count);
 //	return 0;
 //}
+
+
+
+////练习5.比较两个整数不同的比特位有多少个
+//
+//int compare_bit_difference(int num1,int num2)
+//{
+//	int i = 0;
+//	int count = 0;
+//	for (i = 0; i < 32; i++)
+//	{
+//		if ((num1 % 2) != (num2 % 2))
+//			count++;
+//		num1 /= 2;
+//		num2 /= 2;
+//
+//	}
+//	return count;
+//}
+//
+//
+//
+//int main()
+//{
+//	int num1 = 0;
+//	int num2 = 0;
+//	scanf_s("%d%d", &num1, &num2);
+//	int ret=compare_bit_difference(num1, num2);
+//	printf("%d",ret);
+//	return 0;
+//}
+
+
+
+////高效版：
+//
+////利用^，相同为0；相异为1
+//
+//int compare_bit_difference(int i,int j)
+//{
+//	int num = i ^ j;
+//	int p = 0;
+//	int count = 0;
+//	while (num)
+//	{
+//		num &= (num - 1);
+//		count++;
+//	}
+//	return count;
+//}
+//
+//
+//int main()
+//{
+//	int i = 0;
+//	int j = 0;
+//	scanf_s("%d%d",&i,&j);
+//	int ret=compare_bit_difference(i, j);
+//	printf("%d\n",ret);
+//	return 0;
+//}
+
+
+
+////练习6.  获取一个整数2进制序列中的奇数位和偶数位，并打印
+//
+////错误
+//void get_bit_print_odd(int i)
+//{
+//	int j = 0;
+//	for (j = 0; j < 32; j++)
+//	{
+//		int tmp = i % 2;
+//		printf("%d ", tmp);
+//		i = i / 4;
+//	}
+//		printf("\n");
+//}
+//
+//void get_bit_print_even(int i)
+//{
+//	int j = 0;
+//	for (j = 0; j < 32; j++)
+//	{
+//		i = i >> 1;
+//		i = i % 2;
+//		printf("%d ",i);
+//	}
+//	printf("\n");
+//}
+//
+//
+//int main()
+//{
+//	int i = 0;
+//	scanf_s("%d",&i);
+//	get_bit_print_odd(i);//奇数
+//	get_bit_print_even(i);//偶数
+//	return 0;
+//}
+
+////更正：
+//
+////00000000000000000000000000000001
+//
+//void print(int n)
+//{
+//	int i = 0;
+//	printf("奇数位\n");
+//	for (i = 30; i >= 0; i -= 2)
+//	{
+//		printf("%d ", (n >> i) & 1);
+//	}
+//	printf("\n");
+//	printf("偶数位\n");
+//	for (i = 31; i >= 1; i -= 2)
+//	{
+//		printf("%d ", (n >> i) & 1);
+//	}
+//	printf("\n");
+//}
+//
+//
+//int main()
+//{
+//	int n = 0;
+//	scanf_s("%d",&n);
+//	print(n);
+//	return 0;
+//}
+
+////练习7.交换两个变量，不允许创建临时变量
+//
+//int main()
+//{
+//	int i = 0;
+//	int j = 0;
+//	scanf_s("%d%d",&i,&j);
+//	i = i ^ j;
+//	j = i ^ j;
+//	i = i ^ j;
+//	printf("交换后：i=%d,j=%d\n",i,j);
+//	return 0;
+//}
+
+
+
+///练习8.使用指针打印一个数组
+//
+//void print(int* arr, int sz)
+//{
+//	int i = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//		printf("%d ", *arr);
+//		arr++;
+//	}
+//}
+//
+//
+//int main()
+//{
+//	int arr[] = { 1,2,3,4,5,6,7,8,9,10 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	print(arr, sz);
+//	return 0;
+//}
+
+
+
+
+////判断素数,并打印100-200的素数
+//
+//
+//int Is_prime(int i)
+//{
+//	int j = 0;
+//	for (j = 2; j <= sqrt(i); j++)
+//	{
+//		if (i % j == 0)
+//			return 0;
+//	}
+//	if (j > sqrt(i))
+//		return 1;
+//}
+//
+//
+//int main()
+//{
+//	int i = 0;
+//	scanf_s("%d",&i);
+//	int ret=Is_prime(i);
+//	if (ret == 1)
+//		printf("%d是素数\n",i);
+//	else
+//		printf("%d不是素数\n", i);
+//	for (i = 100; i <= 200; i++)
+//	{
+//		if (Is_prime(i) == 1)
+//			printf("%d ",i);
+//	}
+//	return 0;
+//}
+
+
+
+////用递归的方法打印一个数的每一位
+//
+//void print(int i)
+//{
+//	if (i > 9)
+//	print(i / 10);
+//	printf("%d ",i%10);
+//}
+//
+//
+//int main()
+//{
+//	int i = 0;
+//	scanf_s("%d",&i);
+//	print(i);
+//	return 0;
+//}
+
+
+////设计一个函数，求n的阶乘
+//
+//int ret(int i)
+//{
+//	int j = 0;
+//	int r = 1;
+//	for (j = 1; j <= i; j++)
+//	{
+//		r = r * j;
+//	}
+//	return r;
+//}
+//
+//
+//int main()
+//{
+//	int i = 0;
+//	scanf_s("%d",&i);
+//	int r=ret(i);
+//	printf("%d",r);
+//	return 0;
+//}
+
+//用递归的方式求n的阶乘
+
+//int ret(int n)
+//{
+//	int r = 1;
+//	if(n>0)
+//	return n * ret(n - 1);
+//}
+//
+//
+//int main()
+//{
+//	int i = 0;
+//	scanf_s("%d",&i);
+//	int r=ret(i);
+//	printf("ret=%d\n", r);
+//	return 0;
+//}
+
+
+
+//函数模拟strlen
+
+
+//int my_strlen(char*arr)
+//{
+//	int count = 0;
+//	while (*arr != '\0')
+//	{
+//		count++;
+//		arr++;
+//		
+//	}
+//		return count;
+//}
+//
+//int main()
+//{
+//	char arr[] = "hello world";
+//	int len = my_strlen(arr);
+//	printf("len=%d",len);
+//	return 0;
+//}
+
+
+//递归实现strlen
+
+//int my_strlen(char* arr)
+//{
+//	if (*arr != '\0')
+//	{
+//		return 1 + my_strlen(arr + 1);
+//	}
+//	else
+//		return 0;
+//	
+//}
+//
+//int main()
+//{
+//	char arr[] = "abc";
+//	int len=my_strlen(arr);
+//	printf("len=%d\n",len);
+//	return 0;
+//}
+
+
+//字符串逆序
+
+//void reverse_string(char arr[],int sz)
+//{
+//	int left = 0;
+//	int right = sz - 1;
+//	while (left <= right)
+//	{
+//		char tmp = '0';
+//		tmp = arr[left];
+//		arr[left] = arr[right];
+//		arr[right] = tmp;
+//		left++;
+//		right--;
+//	}
+//}
+//
+//int main()
+//{
+//	char arr[] = "abcdef";
+//	int sz = sizeof(arr)/sizeof(arr[0]) - 1;
+//	reverse_string(arr,sz);
+//	int i = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//		printf("%c ", arr[i]);
+//	}
+//	return 0;
+//}
+
+
+//用递归方式实现字符串逆序
+
+//int my_strlen(char* arr)
+//{
+//	if (*arr != '\0')
+//		return 1 + my_strlen(arr + 1);
+//		return 0;
+//}
+//
+//void reverse_string(char* arr, int len)
+//{
+//	int left = 0;
+//	int right = len - 1;
+//	int tmp = 0;
+//	tmp = arr[left];
+//	arr[left] = arr[right];
+//	arr[right] = '\0';
+//	if(my_strlen(arr)>=2)
+//	reverse_string(arr + 1, my_strlen(arr + 1));
+//	arr[right] = tmp;
+//}
+//
+//
+//int main()
+//{
+//	char arr[] = "abcdef";
+//	int len=my_strlen(arr);
+//	reverse_string(arr, len);
+//	printf("%s",arr);
+//
+//	return 0;
+//}
+
+
