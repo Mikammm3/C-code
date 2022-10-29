@@ -3299,6 +3299,12 @@
 
 
 //用递归方式实现字符串逆序
+//1.将第一个元素存起来，放到外面去
+//2.将最后一个元素放到第一个元素中
+//3.将'\0'放到最后一个元素中
+//4.将第二个元素-倒数第二个元素（n-1）逆序
+//5.再将第一个元素放到最后一个元素中
+
 
 //int my_strlen(char* arr)
 //{
@@ -3332,3 +3338,71 @@
 //}
 
 
+////练习9.计算一个整数的每一位的和
+//
+//int DigitSum(int n)
+//{
+//	int sum = n%10;
+//	if (n > 9)
+//		return sum + DigitSum(n / 10);
+//	return sum;
+//}
+//
+//
+//int main()
+//{
+//	int n = 0;
+//	scanf_s("%d", &n);
+//	int sum=DigitSum(n);
+//	printf("sum=%d\n",sum);
+//	return 0;
+//}
+
+
+
+
+////递归实现n的k次方
+
+//double ret(int n, int k)
+//{
+//	
+//	if (k > 0)
+//        return n*ret(n, k - 1);
+//	if (k == 0)
+//		return 1;
+//	if (k < 0)
+//		return (1 / ret(n, -k));
+//}
+//
+//int main()
+//{
+//	int n = 0;
+//	int k = 0;
+//	scanf_s("%d%d", &n, &k);
+//	double i = ret(n, k);
+//	printf("ret=%lf\n", i);
+//	return 0;
+//}
+
+
+////求第n个斐波那契数
+//
+////  1 1 2 3 5 8 
+//
+//int Fibo(int n)
+//{
+//	int ret = 1;
+//	if (n > 2)
+//		return Fibo(n-2) + Fibo(n - 1);
+//	return 1;
+//}
+//
+//
+//int main()
+//{
+//	int n = 0;
+//	scanf_s("%d",&n);
+//	int ret = Fibo(n);
+//	printf("ret=%d\n",ret);
+//	return 0;
+//}
