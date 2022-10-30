@@ -1,4 +1,4 @@
-#define  CRT_SECURE_NO_WARNINGS
+#define  _CRT_SECURE_NO_WARNINGS
 
 //#include<stdio.h>
 ////定义一个结构体（复杂对象）然后列出名字价格
@@ -3406,3 +3406,198 @@
 //	printf("ret=%d\n",ret);
 //	return 0;
 //}
+
+
+//结构是一些值的集合，这些值被称为成员变量，这些值可以是不同的变量类型
+//如：
+
+
+//结构体类型的定义
+
+//第一种方法
+
+//struct stu
+//{
+//	char name[20];
+//	char sex[5];
+//	char tele[12];
+//	short age;
+//}s1, s2, s3;      //记得大括号后面还有一个  ;
+////s1,s2,s3是三个结构体的全局变量
+//
+////尽量少使用全局变量
+//
+//
+//
+////第二种方法
+//
+//typedef struct Stu
+//{
+//	char name[20];
+//	char sex[5];
+//	char tele[12];
+//	short age;
+//}Stu;   //这个Stu是类型
+//
+// 
+//int main()
+//{
+//	//创建结构体变量
+//	struct stu s;//局部变量
+//	Stu s1;  //方法2
+// 
+//  Stu s3={"张三","男","11111666666","20"};
+//	return 0;
+//}
+
+
+//结构体的类型可以是标量，数组，指针，甚至可以是其他结构体
+
+
+
+//struct S
+//{
+//	int i;
+//	char ch[10];
+//};
+//
+//
+//struct T
+//{
+//	char arr[20];
+//	struct S;
+//	char* pc;
+//};
+//
+//int main()
+//{
+//	char arr[20] = "hello world";
+//	struct T t = { "hehe",{2,"haha"},arr };
+//	printf("%s",t.ch);
+//	return 0;
+//}
+
+
+
+//以后结构体传参就传地址
+
+
+//typedef struct M
+//{
+//	char love[30];
+//	char name[5];
+//	char sex[5];
+//}M;//改名，改成M M=typedef struct M
+//
+//
+//void print1(M* love)
+//{
+//	printf("%s", love->name);
+//	printf("%s", love->love);
+//
+//}
+//
+//
+//void print2(M love)
+//{
+//	printf("%s", love.name);
+//	printf("%s", love.love);
+//
+//}
+//
+//
+//int main()
+//{
+//	M love= { "我爱你！！！","罗夏"};
+//	print1(&love);//print1更好
+//	print2(love);
+//	return 0;
+//}
+
+
+
+
+//Debug  调试版本，不做任何优化，包含调试信息
+
+
+//Release  发布版本，做了性能和大小和效率等优化，不可进行调试
+
+
+//Windows调试
+
+
+//  1.准备环境
+//改为Debug
+
+
+//  2.学会快捷键
+
+//断点就是红色的圆点（按F9产生/消失）
+//断点：代码执行后停在断点处，基本上问题代码都是在断点处
+
+//  F9  切换断点
+
+//  F5  启动调试，跳到断点处（逻辑上的断点）停下
+
+//  F11  逐语句，进到函数内部
+
+//  F10  逐过程，按一个F10，代码就走一步
+
+//  shift+F11 跳出函数
+
+//  shift+F5  停止调试
+
+
+//  3.调试时查看代码的信息
+
+//  查看临时变量的值
+//  查看内存
+//  查看调用堆栈
+//  查看汇编信息
+//  查看寄存器信息
+
+
+////实现代码：求1！+2！+3！+.....+n!
+////不考虑溢出
+//
+//int main()
+//{
+//	int n = 0;
+//	scanf_s("%d", &n);
+//	int i = 0;
+//	int ret = 1;
+//	int j = 0;
+//	int sum = 0;
+//	for (j = 1; j <= n; j++)
+//	{
+//		ret = 1;//修改后：将ret初始化为1
+//		for (i = 1; i <= j; i++)
+//		{
+//			ret *= i;//通过调试后，发现问题处在ret这里，ret没有初始化
+//		}
+//		sum += ret;
+//	}
+//	printf("sum=%d\n", sum);
+//	return 0;
+//}
+
+
+
+//int main()
+//{
+//	int i = 0;
+//	int arr[10] = { 0 };
+//	for (i = 0; i <= 12; i++);
+//	{
+//		arr[i] = 0;
+//		//如果运行成功，会出现hehe死循环，这是为什么？
+//		//通过调试，我们能发现当i>9时，栈溢出了，直接非法访问arr[9]的后几个元素
+//		//因为栈区调用原则是先调用高地址的变量，再调用低地址的变量
+//		//数组中元素的地址是由低到高的
+//		//所以当arr[i]非法访问时，极有可能出现&arr[12]与&i的地址相同，
+//		//将arr[12]=0后，导致了i=0，所以才会出现死循环
+//		printf("hehe\n");
+//	}
+//	return 0;
+//}
+
