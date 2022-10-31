@@ -3601,3 +3601,120 @@
 //	return 0;
 //}
 
+
+//模拟实现strcpy
+
+#include<assert.h>
+
+//完善版：
+//char* my_strcpy(char* dest, const char* scr)
+//{
+//	char* tmp = dest;
+//	assert(dest != NULL);
+//	assert(scr != NULL);
+//	while (*dest++ = *scr++)
+//	{
+//		;
+//	}
+//	return tmp;
+//}
+
+
+////改改改善版：
+//void my_strcpy(char* dest, char* scr)
+//{
+//	assert(*dest != NULL);//断言：使用得引用assert.h,()中的表达式为假，就会报错
+//	assert(*scr != NULL);
+//		while (*dest++ = *scr++)
+//		{
+//			;
+//		}
+//}
+
+
+////改改善版：
+//void my_strcpy(char* dest, char* scr)
+//{
+//	if (*dest != NULL && *scr != NULL)
+//	{
+//		while (*dest++ = *scr++)
+//		{
+//			;
+//		}
+//	}
+//}
+
+
+
+
+////改善版：
+//void my_strcpy(char* dest, char* scr)
+//{
+//	while (*dest++ = *scr++)
+//	{
+//		;
+//	}
+//}
+
+
+
+//简单版：
+//void my_strcpy(char* dest, char* scr)
+//{
+//	while (*scr != '\0')
+//	{
+//		*dest = *scr;
+//		dest++;
+//		scr++;
+//	}
+//	*dest = *scr;
+//}
+
+
+//int main()
+//{
+//	char arr1[] = "###############";
+//	char arr2[] = "bit";
+//	strcpy(arr1, arr2);
+//	printf("%s\n", arr1);
+//	my_strcpy(arr1, arr2);
+//	printf("%s\n", arr1);
+//	printf("%s\n", my_strcpy(arr1, arr2));
+//	return 0;
+//}
+
+
+//int main()
+//{
+//	int num = 10;
+//	const int* p = &num;
+//	//const修饰指针变量时
+//	//const放在*左边，修饰的是*p，也就是不能通过p来改变*p（num）的值
+//	*p = 20;//error  
+//	int n = 100;
+//	int*const p = &n;
+//	//const放在*右边，修饰的是p，不能改变地址p
+//	p = &n;
+//	return 0;
+//}
+
+
+//int my_strlen(const char* str)
+//{
+//	assert(*str != NULL);
+//	int count = 0;
+//	while (*str != '\0')
+//	{
+//		count++;
+//		str++;
+//	}
+//	return count;
+//}
+//
+//int main()
+//{
+//	char arr[] = "abcdef";
+//	int len = my_strlen(arr);
+//	printf("%d\n", len);
+//	return 0;
+//}
