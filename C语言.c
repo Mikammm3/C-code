@@ -4102,39 +4102,60 @@
 
 
 
-//打印二维数组：首先要将二维数组想象成一维数组--->有三个元素，每一个元素中又有5个小元素
-void print(int(*p)[5], int x, int y)//p==arr
-{
-	int i = 0;
-	for (i = 0; i < x; i++)
-	{
-		int j = 0;
-		for (j = 0; j < y; j++)
-		{
-			printf("%d ", p[i][j]);
-			printf("%d ", *(p[i] + j));
-			//printf("%d ", *(*(p + i) + j));//*(p+i)表示首元素地址
-			printf("%d ", (*(p + i))[j]);
-		}
-		printf("\n");
-	}
-}
+////打印二维数组：首先要将二维数组想象成一维数组--->有三个元素，每一个元素中又有5个小元素
+//void print(int(*p)[5], int x, int y)//p==arr
+//{
+//	int i = 0;
+//	for (i = 0; i < x; i++)
+//	{
+//		int j = 0;
+//		for (j = 0; j < y; j++)
+//		{
+//			printf("%d ", p[i][j]);
+//			printf("%d ", *(p[i] + j));
+//			//printf("%d ", *(*(p + i) + j));//*(p+i)表示首元素地址
+//			printf("%d ", (*(p + i))[j]);
+//		}
+//		printf("\n");
+//	}
+//}
 
 
 
-int main()
-{
-	/*int arr[3][5] = { {1,2,3,4,5},{2,3,4,5,6},{3,4,5,6,7} };
-	print(arr, 3, 5);*/
-	int arr2[10] = { 1,2,3,4,5,6,7,8,9,10 };
-	int* p = arr2;
-	int i = 0;
-	for (i = 0; i < 10; i++)
-	{
-		printf("%d ", arr2[i]);
-		printf("%d ", p[i]);
-		printf("%d ", *(p + i));//因为 p=arr,都是首元素地址
-		printf("%d ", *(arr2 + i));//*(arr+i)== *(p+i)==arr[i]==p[i]
-	}
-	return 0;
-}
+//int main()
+//{
+//	/*int arr[3][5] = { {1,2,3,4,5},{2,3,4,5,6},{3,4,5,6,7} };
+//	print(arr, 3, 5);*/
+//	int arr2[10] = { 1,2,3,4,5,6,7,8,9,10 };
+//	int* p = arr2;
+//	int i = 0;
+//	for (i = 0; i < 10; i++)
+//	{
+//		printf("%d ", arr2[i]);
+//		printf("%d ", p[i]);
+//		printf("%d ", *(p + i));//因为 p=arr,都是首元素地址
+//		printf("%d ", *(arr2 + i));//*(arr+i)== *(p+i)==arr[i]==p[i]
+//	}
+//	return 0;
+//}
+
+
+
+//一维数组传参的时候，可以写成下面形式
+//int arr[10]={0};
+//void test(int arr[])
+//void test(int arr[10])
+//void test(int*arr)
+
+
+//指针数组传参时，可以写成下面形式
+//int*parr[10]={0};
+//void test(int**arr)//传的是首元素地址，其地址是int*类型，则传参时用int**接收
+//void test(int*arr[10])
+
+
+//二维数组传参
+//int arr[3][5]={0};//想象成一维数组，则有三个元素，每个元素都是一行数组
+//void test(int arr[3][5])
+//void test(int arr[][5])
+//void test(int(*p)[5])
