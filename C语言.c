@@ -3607,12 +3607,12 @@
 #include<assert.h>
 
 //完善版：
-//char* my_strcpy(char* dest, const char* scr)
+//char* my_strcpy(char* dest, const char* src)
 //{
 //	char* tmp = dest;
 //	assert(dest != NULL);
-//	assert(scr != NULL);
-//	while (*dest++ = *scr++)
+//	assert(src != NULL);
+//	while (*dest++ = *src++)
 //	{
 //		;
 //	}
@@ -3621,11 +3621,11 @@
 
 
 ////改改改善版：
-//void my_strcpy(char* dest, char* scr)
+//void my_strcpy(char* dest, char* src)
 //{
 //	assert(*dest != NULL);//断言：使用得引用assert.h,()中的表达式为假，就会报错
-//	assert(*scr != NULL);
-//		while (*dest++ = *scr++)
+//	assert(*src != NULL);
+//		while (*dest++ = *src++)
 //		{
 //			;
 //		}
@@ -3633,11 +3633,11 @@
 
 
 ////改改善版：
-//void my_strcpy(char* dest, char* scr)
+//void my_strcpy(char* dest, char* src)
 //{
-//	if (*dest != NULL && *scr != NULL)
+//	if (*dest != NULL && *src != NULL)
 //	{
-//		while (*dest++ = *scr++)
+//		while (*dest++ = *src++)
 //		{
 //			;
 //		}
@@ -3648,9 +3648,9 @@
 
 
 ////改善版：
-//void my_strcpy(char* dest, char* scr)
+//void my_strcpy(char* dest, char* src)
 //{
-//	while (*dest++ = *scr++)
+//	while (*dest++ = *src++)
 //	{
 //		;
 //	}
@@ -3659,15 +3659,15 @@
 
 
 //简单版：
-//void my_strcpy(char* dest, char* scr)
+//void my_strcpy(char* dest, char* src)
 //{
 //	while (*scr != '\0')
 //	{
-//		*dest = *scr;
+//		*dest = *src;
 //		dest++;
-//		scr++;
+//		src++;
 //	}
-//	*dest = *scr;
+//	*dest = *src;
 //}
 
 
@@ -4159,3 +4159,171 @@
 //void test(int arr[3][5])
 //void test(int arr[][5])
 //void test(int(*p)[5])
+
+
+
+////一级指针传参
+//
+//void test(int* p)
+//{}
+//
+//int main()
+//{
+//	int i = p;
+//	int* p = &i;
+//	test(p);
+//	test(&i);
+//	return 0;
+//}
+
+
+////二级指针传参
+//void test(int**p)
+//{}
+//int main()
+//{
+//	//int i = 10;
+//	//int* p = &i;
+//	//int* pp = &p;
+//	//test(&p);
+//	//test(pp);
+//	int* parr[5] = { 0 };
+//	//还可以传一级指针数组
+//	test(int* parr[5]);
+//	return 0;
+//}
+
+
+////函数指针---存放函数地址的指针
+//int Add(int x, int y)
+//{
+//	return x + y;
+//}
+////函数名 和 &函数名都是函数地址
+//int main()
+//{
+//	int a = 19;
+//	int b = 20;
+//	int sum = Add(a, b);
+//	int(*p)(int, int) = &Add;
+//	//第一个int表示函数的返回类型
+//	//括号内的两个int表示参数类型
+//	printf("%d ", (*p)(3, 5));
+//  printf("%d ",p(3, 5));
+//  printf("%d ",Add(3, 5));
+//	return 0;
+//}
+
+
+//void Print()
+//{
+//	printf("hello bit\n");
+//}
+//int main()
+//{
+//	void(*p)() = Print;
+//	(*p)();
+//	return 0;
+//}
+
+
+//void Print(char* str)
+//{
+//	printf("%s", str);
+//}
+//int main()
+//{
+//	void(*p)(char*) = Print;
+//	(*p)("hello world\n");
+//	return 0;
+//}
+
+
+////解释下列代码意思：
+//
+////代码1.
+//int main()
+//{
+//	//代码1.
+//	*((void (*)())0)();
+//
+//
+//
+//
+//	//answer:将0强制类型转换成函数指针类型，该函数指针无参数，返回值是void
+//	//并调用0地址处的这个函数（使用这个函数）
+//
+//	//代码2.
+//	void (*signal(int, void(*)(int)))(int);
+//
+//
+//
+//
+//	//answer:signal是个函数声明
+//	//该函数的参数类型一个是int，另一个是函数指针类型，该函数指针指向的函数的参数是int，返回类型是void
+//	//signal的返回类型是函数指针，该函数指针指向的函数参数类型是int，返回类型为void
+//	return 0;
+//}
+
+
+
+////可以对代码2：void (*signal(int, void(*)(int)))(int)进行简化
+//
+//
+//int main()
+//{
+//	typedef void (*pfun_t)(int);//重新命名
+//	pfun_t signal(int, pfun_t);
+//	//上面两个相当于代码2：void (*signal(int, void(*)(int)))(int);
+//	return 0;
+//}
+
+
+
+
+////函数指针数组  先写出数组，再写函数指针  parr[5]   --->   int (*parr[5])(int,int)
+//
+//int Add(int x, int y)
+//{
+//	return x + y;
+//}
+//
+//int Sub(int x, int y)
+//{
+//	return x - y;
+//}
+//
+//int Mul(int x, int y)
+//{
+//	return x * y;
+//}
+//
+//int Div(int x, int y)
+//{
+//	return x / y;
+//}
+//int main()
+//{
+//	int (*parr[4])(int, int) = { Add,Sub,Mul,Div };
+//	int i = 0;
+//	for (i = 0; i < 4; i++)
+//	{
+//		printf("%d ", ( * parr[i])(3, 5));//8 -2 15 0
+//	}
+//	return 0;
+//}
+
+
+//练习
+char* my_strcpy(char* dest, const char* src)
+{
+	//1.写一个函数指针pf，能够指向my_strcpy
+	//2.写一个函数指针数组pfArr,能够存放4个my_strcpy函数的地址
+	;
+}
+int main()
+{
+	char* (* pf)(char*, const char*);
+	char* (*pfArr[4])(char*, const char*) = { my_strcpy };
+	return 0;
+}
