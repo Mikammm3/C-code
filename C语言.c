@@ -4314,16 +4314,252 @@
 //}
 
 
-//练习
-char* my_strcpy(char* dest, const char* src)
-{
-	//1.写一个函数指针pf，能够指向my_strcpy
-	//2.写一个函数指针数组pfArr,能够存放4个my_strcpy函数的地址
-	;
-}
-int main()
-{
-	char* (* pf)(char*, const char*);
-	char* (*pfArr[4])(char*, const char*) = { my_strcpy };
-	return 0;
-}
+////练习
+//char* my_strcpy(char* dest, const char* src)
+//{
+//	//1.写一个函数指针pf，能够指向my_strcpy
+//	//2.写一个函数指针数组pfArr,能够存放4个my_strcpy函数的地址
+//	;
+//}
+//int main()
+//{
+//	char* (* pf)(char*, const char*);
+//	char* (*pfArr[4])(char*, const char*) = { my_strcpy };
+//	return 0;
+//}
+
+
+//函数指针数组用途：转移表
+
+//模拟计算器
+
+//void menu()
+//{
+//	printf("*******************************\n");
+//	printf("****   1.Add      2.Sub    ****\n");
+//	printf("****   3.Mul      4.Div    ****\n");
+//	printf("*********   0.exit  ***********\n");
+//}
+//
+//int Add(int x, int y)
+//{
+//	return x + y;
+//}
+//int Sub(int x,int y)
+//{
+//	return x - y;
+//}
+//int Mul(int x, int y)
+//{
+//	return x * y;
+//}
+//int Div(int x, int y)
+//{
+//	return x / y;
+//}
+//int main()
+//{
+//	int input = 0;
+//	int x = 0;
+//	int y = 0;
+//	do
+//	{
+//		
+//		menu();
+//		printf("请选择:>\n");
+//		scanf_s("%d", &input);
+//
+//
+//		switch (input)
+//		{
+//		case 1:
+//			printf("请输入两个操作数:>\n");
+//			scanf_s("%d%d", &x, &y);
+//			printf("%d\n", Add(x, y));
+//			break;
+//		case 2:
+//			printf("请输入两个操作数:>\n");
+//			scanf_s("%d%d", &x, &y);
+//			printf("%d\n", Sub(x, y));
+//			break;
+//		case 3:
+//			printf("请输入两个操作数:>\n");
+//			scanf_s("%d%d", &x, &y);
+//			printf("%d\n", Mul(x, y));
+//			break;
+//		case 4:
+//			printf("请输入两个操作数:>\n");
+//			scanf_s("%d%d", &x, &y);
+//			printf("%d\n", Div(x, y));
+//			break;
+//		case 0:
+//			printf("退出\n");
+//			break;
+//		default:
+//			printf("选择错误\n");
+//			break;
+//		}
+//	} while (input);
+//
+//	return 0;
+//}
+
+
+
+////简化版1：
+//void menu()
+//{
+//	printf("*******************************\n");
+//	printf("****   1.Add      2.Sub    ****\n");
+//	printf("****   3.Mul      4.Div    ****\n");
+//	printf("*********   0.exit  ***********\n");
+//}
+//
+//int Add(int x, int y)
+//{
+//	return x + y;
+//}
+//int Sub(int x, int y)
+//{
+//	return x - y;
+//}
+//int Mul(int x, int y)
+//{
+//	return x * y;
+//}
+//int Div(int x, int y)
+//{
+//	return x / y;
+//}
+//int main()
+//{
+//	int input = 0;
+//	int x = 0;
+//	int y = 0;
+//	do
+//	{
+//		//用函数指针数组把函数存起来
+//		menu();
+//		printf("请选择:>\n");
+//		scanf_s("%d", &input);
+//		int (*pfArr[])(int, int) = { 0,Add,Sub,Mul,Div };//转移表
+//		if (input >= 1 && input <= 4)
+//		{
+//			printf("请输入两个操作数:>\n");
+//			scanf_s("%d%d", &x, &y);
+//			printf("%d\n", pfArr[input](x, y));
+//		}
+//		else if (input == 0)
+//			printf("退出\n");
+//		else
+//			printf("选择错误\n");
+//	} while (input);
+//
+//	return 0;
+//}
+
+
+
+////简洁版2：
+//void menu()
+//{
+//	printf("*******************************\n");
+//	printf("****   1.Add      2.Sub    ****\n");
+//	printf("****   3.Mul      4.Div    ****\n");
+//	printf("*********   0.exit  ***********\n");
+//}
+//
+//
+////回调函数（通过函数指针调用的函数）
+////把一个函数指针传给这里的函数，再通过这个指针调用这个函数的内部，那个被调用的函数就叫做回调函数
+////可以解决冗余问题
+//void Calc(int (*p)(int, int))//回调函数
+//{
+//	int x = 0;
+//	int y = 0;
+//	printf("请输入两个操作数:>\n");
+//	scanf_s("%d%d", &x, &y);
+//	printf("%d\n", p(x, y));
+//}
+//
+//int Add(int x, int y)
+//{
+//	return x + y;
+//}
+//int Sub(int x, int y)
+//{
+//	return x - y;
+//}
+//int Mul(int x, int y)
+//{
+//	return x * y;
+//}
+//int Div(int x, int y)
+//{
+//	return x / y;
+//}
+//int main()
+//{
+//	int input = 0;
+//	do
+//	{
+//		
+//		menu();
+//		printf("请选择:>\n");
+//		scanf_s("%d", &input);
+//
+//
+//		switch (input)
+//		{
+//		case 1:
+//			Calc(Add);
+//			break;
+//		case 2:
+//			Calc(Sub);
+//			break;
+//		case 3:
+//			Calc(Mul);
+//			break;
+//		case 4:
+//			Calc(Div);
+//			break;
+//		case 0:
+//			printf("退出\n");
+//			break;
+//		default:
+//			printf("选择错误\n");
+//			break;
+//		}
+//	} while (input);
+//
+//	return 0;
+//}
+
+
+
+////指向函数指针数组的指针，一个指针，里面存放了函数指针数组的地址
+//
+//int(*pfArr[4])(int, int);//函数指针数组
+//
+//int(*(*ppfArr)[4])(int, int);//指向函数指针数组的指针
+
+
+
+//void Print(char* str)
+//{
+//	printf("嘻嘻:%s\n",str);
+//}
+//
+//void test(void (*p)(char*))
+//{
+//	printf("test\n");
+//	p("哈哈");//回调函数
+//}
+//
+//int main()
+//{
+//
+//	test(Print);
+//	return 0;
+//}
+
