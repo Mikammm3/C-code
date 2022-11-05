@@ -4563,3 +4563,179 @@
 //	return 0;
 //}
 
+
+
+////qsort函数的应用-----要引用头文件stdlib.h
+//qsort(void*base,size_t num,size_t width,int(*cmp)(const void*e1,const void*e2))
+//void*base---排序的数组地址
+//size_t num----元素个数
+//size_t width---首元素的字节大小
+//int(*cmp)(const void*e1,const void*e2)---是一个函数指针
+//这个函数指针就是你所规定的排序方式,是把函数地址传给qsort啊
+//注意：这个回调函数，
+//如果 e1 > e2 ,返回大于0的数
+//如果 e1 = e2 ,返回0
+//如果 e1 < e2 ,返回小于0的数
+
+
+//////举个例子吧
+////例子1，
+//int cmp_int(const void* e1, const void* e2)
+//{
+//	return  *(int*)e1 - *(int*)e2;
+//}
+//
+//
+//int main()
+//{
+//	int arr[] = { 1,2,3,4,5,7,6,9,8 ,10 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	qsort(arr, sz, sizeof(arr[0]), cmp_int);
+//	int i = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//		printf("%d ", arr[i]);
+//	}
+//	return 0;
+//}
+
+
+////例子2.
+//int cmp_float(const void* e1, const void* e2)
+//{
+//	return  *(float*)e1 - *(float*)e2;
+//}
+//
+//int main()
+//{
+//	float arr[] = { 2.0,1.0,3.0,4.0 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	qsort(arr, sz, sizeof(arr[0]), cmp_float);
+//	int i = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//		printf("%f ", arr[i]);
+//	}
+//	return 0;
+//}
+
+////例子3.
+//struct Stu
+//{
+//	char name[20];
+//	short age;
+//};
+//
+//int cmp_struct_by_age(const void* e1, const void* e2)
+//{
+//	return ((struct Stu*)e1)->age - ((struct Stu*)e2)->age;
+//}
+//
+//int main()
+//{
+//	struct Stu s[3] = { {"zhangsan",20},{"lisi",30},{"wangwu",5} };
+//	int sz = sizeof(s) / sizeof(s[0]);
+//	qsort(s, sz, sizeof(s[0]), cmp_struct_by_age);
+//	int i = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//		printf("%d ", s[i].age);
+//	}
+//	return 0;
+//}
+
+
+////例子4.
+//struct Stu
+//{
+//	char name[20];
+//	short age;
+//};
+//
+//int cmp_struct_by_name(const void* e1, const void* e2)
+//{
+//	return strcmp(((struct Stu*)e1)->name, ((struct Stu*)e2)->name);
+//}
+//
+//int main()
+//{
+//	struct Stu s[3] = { {"zhangsan",20},{"lisi",30},{"wangwu",5} };
+//	int sz = sizeof(s) / sizeof(s[0]);
+//	qsort(s, sz, sizeof(s[0]), cmp_struct_by_name);
+//	int i = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//		printf("%s ", s[i].name);
+//	}
+//	return 0;
+//}
+
+
+
+
+//void*    无具体类型的指针，它就相当于一个垃圾桶，什么类型的地址都能往里扔
+//它可以存放任意类型的地址，如
+//char a='w';
+//void* p = &a;
+//但是，对于void*而言
+//不能对它解引用，因为不知道访问多少字节的空间
+//也不能进行加减整数的运算
+
+
+////模拟qsort
+//
+//int cmp_int(const void* e1, const void* e2)
+//{
+//	return *(int*)e1 - *(int*)e2;
+//}
+//
+//void swap(char* buf1, char* buf2, int width)
+//{
+//	int i = 0;
+//	for (i = 0; i < width; i++)
+//	{
+//		char tmp = *buf1;
+//		*buf1 = *buf2;
+//		*buf2 = tmp;
+//		buf1++;
+//		buf2++;
+//	}
+//}
+//
+//void bubble_sort(void* base, int sz, int width, int(*cmp)(const void* e1, const void* e2))
+//{
+//	int i = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//		int j = 0;
+//		for (j = 0; j < sz - 1 - i; j++)
+//		{
+//			//交换
+//			if (cmp((char*)base + j * width, (char*)base + (j + 1) * width) > 0)
+//				swap((char*)base + j * width, (char*)base + (j + 1) * width, width);
+//		}
+//	}
+//}
+//
+//struct Stu
+//{
+//	char name[20];
+//	short age;
+//};
+//
+//int cmp_str_by_name(const void* e1, const void* e2)
+//{
+//	return strcmp(((struct Stu*)e1)->name, ((struct Stu*)e2)->name);
+//}
+//
+//int main()
+//{
+//	int arr[] = { 9,8,7,6,5,3,4,2,1,0 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	bubble_sort(arr, sz, sizeof(arr[0]), cmp_int);
+//	struct Stu s[3] = {{"zhangsan",20},{"lisi",10},{"wangwu",40}};
+//	int z = sizeof(s) / sizeof(s[0]);
+//	bubble_sort(s, z, sizeof(s[0]), cmp_str_by_name);
+//	return 0;
+//}
+
