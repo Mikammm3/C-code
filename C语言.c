@@ -4739,3 +4739,150 @@
 //	return 0;
 //}
 
+
+////练习:
+////
+//int main()
+//{
+//	
+//	int a[] = { 1,2,3,4 };
+//	//练习1.
+//
+//	//数组名是首元素地址
+//	//&arr arr表示的是整个数组
+//	//sizeof(arr) arr表示整个数组
+//	 
+//	//printf("%d\n", sizeof(a));//16
+//	//printf("%d\n", sizeof(a + 0));//4/8
+//	//printf("%d\n", sizeof(*a));//4
+//	//printf("%d\n", sizeof(a + 1));//4/8
+//	//printf("%d\n", sizeof(a[1]));//4
+//	//printf("%d\n", sizeof(&a));//4/8
+//	//printf("%d\n", sizeof(*&a));//16
+//	//printf("%d\n", sizeof(&a + 1));//4/8
+//	//printf("%d\n", sizeof(&a[0]));//4/8
+//	//printf("%d\n", sizeof(&a[0] + 1));//4/8
+//
+//
+//	//练习2.
+//	char arr[] = { 'a','b','c','d','e','f' };
+//
+//	//printf("%d\n", sizeof(arr));//6
+//	//printf("%d\n", sizeof(arr + 0));//4/8
+//	//printf("%d\n", sizeof(*arr));//1
+//	//printf("%d\n", sizeof(arr[1]));//1
+//	//printf("%d\n", sizeof(&arr));//4/8
+//	//printf("%d\n", sizeof(&arr + 1));//4/8
+//	//printf("%d\n", sizeof(&arr[0] + 1));//4/8
+//
+//	//练习3.
+//
+//  char arr[] = { 'a','b','c','d','e','f' };
+// 
+//	////只能把地址传给strlen，把除地址以外的东西传给strlen的话，程序会崩溃
+//	printf("%d\n", strlen(arr));//随机值1
+//	printf("%d\n", strlen(arr + 0));//随机值1
+//	printf("%d\n", strlen(*arr));//err
+//	printf("%d\n", strlen(arr[1]));//err
+//	printf("%d\n", strlen(&arr));//随机值1
+//	printf("%d\n", strlen(&arr + 1));//随机值1-6
+//	printf("%d\n", strlen(&arr[0] + 1));//随机值-1
+//
+//
+//	return 0;
+//}
+
+//int main()
+//{
+//	////练习4.
+//	//char arr[] = "abcdef";
+//	////只要有&，就是地址，一般都是4/8
+//	//printf("%d\n", sizeof(arr));//7
+//	//printf("%d\n", sizeof(arr + 0));//4/8
+//	//printf("%d\n", sizeof(*arr));//1
+//	//printf("%d\n", sizeof(arr[1]));//1
+//	//printf("%d\n", sizeof(&arr));//4/8
+//	//printf("%d\n", sizeof(&arr + 1));//4/8
+//	//printf("%d\n", sizeof(&arr[0] + 1));//4/8
+//
+//	////练习5.
+//	//char arr[] = "abcdef";
+//
+//	//printf("%d\n", strlen(arr));//6
+//	//printf("%d\n", strlen(arr + 0));//6
+//	//printf("%d\n", strlen(*arr));//err
+//	//printf("%d\n", strlen(arr[1]));//err
+//	//printf("%d\n", strlen(&arr));//6
+//	//printf("%d\n", strlen(&arr + 1));//随机值
+//	//printf("%d\n", strlen(&arr[0] + 1));//5
+//
+//	////练习6.
+//	//char* p = "abcdef";
+//	////"abcdef"是个常量字符串
+//	////p就相当于arr，存的是首元素的地址  p==arr
+//
+//	//printf("%d\n", sizeof(p));//4/8
+//	//printf("%d\n", sizeof(p + 1));//4/8
+//	//printf("%d\n", sizeof(*p));//1
+//	//printf("%d\n", sizeof(p[0]));//1
+//	//printf("%d\n", sizeof(&p));//4/8
+//	//printf("%d\n", sizeof(&p + 1));//4/8
+//	//printf("%d\n", sizeof(&p[0] + 1));//4/8
+//
+//	////练习7.
+//	//char* p = "abcdef";
+//
+//	//printf("%d\n", strlen(p));//6
+//	//printf("%d\n", strlen(p + 1));//5
+//	//printf("%d\n", strlen(*p));//err
+//	//printf("%d\n", strlen(p[0]));//err
+//	//printf("%d\n", strlen(&p));//随机值
+//	//printf("%d\n", strlen(&p + 1));//随机值
+//	//printf("%d\n", strlen(&p[0] + 1));//5
+//
+//	////练习8.
+//	//int a[3][4] = { 0 };
+//
+//	//printf("%d\n", sizeof(a));//48
+//	//printf("%d\n", sizeof(a[0][0]));//4
+//	//printf("%d\n", sizeof(a[0]));//16
+//	//printf("%d\n", sizeof(a[0] + 1));//4/8
+//	//printf("%d\n", sizeof(*(a[0] + 1)));//4
+//	//printf("%d\n", sizeof(a + 1));//4/8
+//	//printf("%d\n", sizeof(*(a + 1)));//16
+//	//printf("%d\n", sizeof(&a[0] + 1));//4/8
+//	//printf("%d\n", sizeof(*(&a[0] + 1)));//16
+//	//printf("%d\n", sizeof(*a));//16
+//	//printf("%d\n", sizeof(a[3]));//16
+//	return 0;
+//}
+
+//int main()
+//{
+//	//练习9.
+//	int a[5] = { 1,2,3,4,5 };
+//	int* ptr = (int*)(&a + 1);
+//	printf("%d,%d\n", *(a + 1), *(ptr - 1));//2,5
+//	return 0;
+//}
+
+
+//struct Test
+//{
+//	int Num;
+//	char* pcName;
+//	short sDate;
+//	char cha[2];
+//	short sBa[4];
+//}*p;
+//
+////假设p的值为0x100000，下方表达式值为多少
+////已知：结构体Test类型的变量大小是20个字节
+//int main()
+//{
+//	p = (struct Test*)0x100000;
+//	printf("%p\n", p + 0x1);//0x00100014
+//	printf("%p\n", (unsigned long)p + 0x1);//0x00100001
+//	printf("%p\n", (unsigned int*)p + 0x1);//0x00100004
+//	return 0;
+//}
