@@ -4963,3 +4963,309 @@
 //没做完之前不许看！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！///////////////////////////////////////////////answer:POINT  ER   ST    EW    
 
 
+//练习17.
+//int main()
+//{
+// 
+//	unsigned long pulArray[] = { 6,7,8,9,10 };
+//	unsigned long* pulPtr;
+//
+//	pulPtr = pulArray;
+//	*(pulPtr + 3) += 3;
+//
+//	printf("%d,%d\n", *pulPtr, *(pulPtr + 3));//6,12
+//	return 0;
+//}
+
+
+#include<assert.h>
+
+//练习18.字符串逆序，写一个函数，实现字符串逆序
+//void reverse(char* arr,int len)
+//{
+//	//方法1：
+//	assert<*arr != NULL>;
+//	int left = 0;
+//	int right = len - 1;
+//	while (left <= right)
+//	{
+//		char tmp = 0;
+//		tmp = arr[left];
+//		arr[left] = arr[right];
+//		arr[right] = tmp;
+//		left++;
+//		right--;
+//	}
+//
+//
+//
+//	//方法2：
+//	int left = 0;
+//	int right = len - 1;
+//	char tmp = 0;
+//	tmp = arr[left];
+//	arr[left] = arr[right];
+//	arr[right] = '\0';
+//	if (strlen(arr + 1) >= 2)
+//	{
+//		reverse(arr + 1, strlen(arr + 1));
+//	}
+//	arr[right] = tmp;
+//}
+//
+//
+//int main()
+//{
+//	char arr[256] = { 0 };
+//	scanf_s("%s", &arr,20);
+//	int len = strlen(arr);
+//	reverse(arr,len);
+//	printf("%s ", arr);
+//	return 0;
+//}
+
+
+//gets(arr);//读取/打印一行
+
+
+
+//练习19.计算求和，
+//求sn=a+aa+aaa+aaaa+aaaaa的前五项之和
+//int Add(int a, int n)
+//{
+//	int i = 0;
+//	int sum = 0;
+//	int ret = 0;
+//	for (i = 0; i < n; i++)
+//	{
+//		ret = ret * 10 + a;
+//		sum += ret;
+//	}
+//	return sum;
+//}
+//
+//
+//int main()
+//{
+//	int a = 0;
+//	int n = 0;
+//	scanf_s("%d%d", &a, &n);
+//	int sum=Add(a, n);
+//	printf("sum=%d\n", sum);
+//	return 0;
+//}
+
+
+
+//练习20.打印1-100000的自幂数
+//PS:pow(a,b)是用来求次方数的,求的是a^b   a的b次方
+//自幂数就是一个是个n位数，把它的每一位数的n次方加起来，就等于这个数本身，这个数就被叫做自幂数
+//如 153 ，1^3 + 5^3 + 3^3 =153
+//如 1634  1^4 + 6^4 + 3^4 +4^4 =1634
+
+//思路：
+//1.判断这个数是几位数 ---n
+//2.再判断这个数的每一位的n次方是否等于这个数本身
+//3.如果是，打印
+//int main()
+//{
+//	int i = 0;
+//	for (i = 1; i <= 100000; i++)
+//	{
+//		int n = 1;
+//		int tmp = i;
+//		while (tmp / 10)
+//		{
+//			n++;
+//			tmp /= 10;
+//		}
+//		tmp = i;
+//		int sum = 0;
+//		while (tmp)
+//		{
+//			sum += pow(tmp % 10, n);
+//			tmp /= 10;
+//		}
+//		if (sum == i)
+//			printf("%d ", i);
+//	}
+//	return 0;
+//}
+
+
+////练习21.打印菱形，完全对称的菱形，只有奇数行才能打印出菱形
+////       *
+////      ***
+////     *****
+////    *******
+////   *********
+////  ***********
+//// *************
+////***************
+//// *************
+////  ***********
+////   *********
+////    *******
+////     *****
+////      ***
+////       *
+//
+////先打印上半部分
+////再打印下半部分
+//int main()
+//{
+//	int line = 0;
+//	scanf_s("%d", &line);
+//	int i = 0;
+//	//打印上半部分
+//	for (i = 0; i < line; i++)
+//	{
+//		//打印空格
+//		int j = 0;
+//		for (j = 0; j < line - 1 - i; j++)
+//		{
+//			printf(" ");
+//		}
+//
+//		//打印*
+//		for (j = 0; j < 2 * i + 1; j++)
+//		{
+//			printf("*");
+//		}
+//		printf("\n");
+//	}
+//
+//	//打印下半部分
+//	for (i = 1; i <= line - 1; i++)
+//	{
+//		//打印空格
+//		int j = 0;
+//		for (j = 0; j < i ; j++)
+//		{
+//			printf(" ");
+//		}
+//
+//		//打印*
+//		for (j = 0; j < 2 * line - 1 - 2 * i; j++)
+//		{
+//			printf("*");
+//		}
+//		printf("\n");
+//	}
+//	return 0;
+//}
+
+
+//练习22.喝汽水问题，1瓶汽水1元，
+//2个空瓶换1瓶汽水，给20元，可以喝多少汽水
+
+//int main()
+//{
+//	int money = 0;
+//	int empty = 0;
+//	int total = 0;
+//	scanf_s("%d", &money);
+//	empty = money;
+//	total = money;
+//	while (empty >= 2)
+//	{
+//		total += empty / 2;
+//		empty = empty / 2 + empty % 2;
+//	}
+//	
+//	printf("total=%d\n",total);
+//	return 0;
+//}
+
+
+//模拟strlen
+//int my_strlen(char* arr)
+//{
+//	int count = 0;
+//	if (*arr != 0)
+//		return 1 + my_strlen(arr + 1);
+//}
+//int main()
+//{
+//	char arr[] = { 0 };
+//	scanf_s("%s", &arr, 40);
+//	char* p = arr;
+//	int count = 0;
+//	while (*p)
+//	{
+//		count++;
+//		p++;
+//	}
+//	printf("len=%d\n", count);
+//	return 0;
+//}
+
+
+////模拟strcpy
+//#include<assert.h>
+//
+//char* my_strcpy(char* dest, const char* src)
+//{
+//	char* tmp = dest;
+//	assert(dest != NULL);
+//	assert(src != NULL);
+//	while (*dest++ = *src++)
+//	{
+//		;
+//	}
+//	return tmp;
+//}
+//
+//int main()
+//{
+//	char arr1[] = "#########";
+//	char arr2[] = "hello bit";
+//	char*dest=my_strcpy(arr1, arr2);
+//	printf("%s", dest);
+//	return 0;
+//}
+
+
+
+////1 2 3 4 5 6 7 8 9 10
+////练习：调整奇数偶数的顺序，调整数组，使奇数全部位于偶数前面
+//void my_sort(int arr[], int sz)
+//{
+//	int left = 0;
+//	int right = sz - 1;
+//	while (left < right)
+//	{
+//		//从左开始找偶数
+//		while (left < right && (arr[left] % 2 == 1))
+//		{
+//			left++;
+//		}
+//		//从右开始找奇数
+//		while (left < right && (arr[right] % 2 == 0))
+//		{
+//			right--;
+//		}
+//		//交换
+//		if (left < right)
+//		{
+//			int tmp = arr[left];
+//			arr[left] = arr[right];
+//			arr[right] = tmp;
+//		}
+//	}
+//}
+//
+//
+//int main()
+//{
+//	int arr[] = { 1,2,3,4,5,6,7,8,9,10 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	my_sort(arr,sz);
+//	int i = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//			printf("%d ", arr[i]);
+//	}
+//	return 0;
+//}
+
