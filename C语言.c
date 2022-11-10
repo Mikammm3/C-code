@@ -5364,3 +5364,300 @@
 //	}
 //	return 0;
 //}
+
+
+//练习27.猜名次
+//A：B第二，我第三
+//B：我第二，E第四
+//C：我第一，D第二
+//D：C最后，我第三
+//E：我第四，A第一
+//已知：每位选手都说对了一半
+
+
+//int main()
+//{
+//	int a = 0;
+//	int b = 0;
+//	int c = 0;
+//	int d = 0;
+//	int e = 0;
+//	for (a = 1; a <= 5; a++)
+//	{
+//		for (b = 1; b <= 5; b++)
+//		{
+//			for (c = 1; c <= 5; c++)
+//			{
+//				for (d = 1; d <= 5; d++)
+//				{
+//					for (e = 1; e <= 5; e++)
+//					{
+//						if ((((b == 2) + (a == 3) == 1)
+//							&& ((b == 2) + (e == 4) == 1)
+//							&& ((c == 1) + (d == 2) == 1)
+//							&& ((c == 5) + (d == 3) == 1)
+//							&& ((e == 4) + (a == 1) == 1)))
+//						{
+//							if (a * b * c * d * e == 120)
+//								printf("A=%d,B=%d,C=%d,D=%d,E=%d\n", a, b, c, d, e);
+//						}
+//					}
+//				}
+//			}
+//		}
+//	}
+//
+//	return 0;
+//}
+
+
+
+////模拟实现qsort，写一个冒泡排序，模拟qsort
+//
+//int  cmp_int(const void* x,const void* y)
+//{
+//	return *(int*)x - *(int*)y;
+//}
+//
+//void swap(char* buf1, char* buf2, int width)
+//{
+//	//既然是char*类型，那就一个字节一个字节交换，次数就是width
+//	int i = 0;
+//	for (i = 0; i < width; i++)
+//	{
+//		char tmp = *buf1;
+//		*buf1 = *buf2;
+//		*buf2 = tmp;
+//		buf1++;
+//		buf2++;
+//	}
+//}
+//
+//void bubble_sort(void* arr, int sz, int width, int(*cmp)(const void*, const void*))
+//{
+//	int i = 0;
+//	for (i = 0; i < sz - 1; i++)
+//	{
+//		int j = 0;
+//		for (j = 0; j < sz - 1 - i; j++)
+//		{
+//			if (cmp((char*)arr + j * width, (char*)arr + (j + 1) * width) > 0)
+//				swap((char*)arr + j * width, (char*)arr + (j + 1) * width, width);
+//		}
+//	}
+//}
+//int main()
+//{
+//	int arr[] = { 10,9,8,7,6,5,4,3,2,1 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	bubble_sort(arr, sz, sizeof(arr[0]), cmp_int);
+//	return 0;
+//}
+
+
+//练习28.左旋字符串：左旋字符串中的k个字符
+//例如：
+//ABCD左旋一个字符得到BCDA
+//ABCD左旋两个字符得到CDAB
+
+
+//方法1：
+//void left_move(char* arr, int k)
+//{
+//	int j = 0;
+//	
+//	int len = strlen(arr);
+//  assert(k <= len);
+//	for (j = 0; j < k; j++)
+//	{
+//		//把首元素拿出来
+//		assert(arr != NULL);
+//		char tmp = *arr;
+//		int i = 0;
+//		//首元素后面的元素往前挪
+//		for (i = 0; i < len - 1; i++)
+//		{
+//			*(arr + i) = *(arr + 1 + i);
+//		}
+//		//将首元素放到最后一个元素（不包括'\0'）
+//		*(arr + len - 1) = tmp;
+//	}
+//}
+
+//方法2（较好）
+//三步翻转法
+//ab cdef
+//ba fedc  左右两部分 分别逆序
+//cdef ab  再整体逆序
+//void reverse(char* start, char* end)
+//{
+//	assert(start);
+//	assert(end);
+//	while (start <= end)
+//	{
+//		char tmp = *start;
+//		*start = *end;
+//		*end = tmp;
+//		start++;
+//		end--;
+//	}
+//}
+//
+//
+//void left_move(char* arr, int k)
+//{
+//	int len = strlen(arr);
+//	assert(k <= len);
+//	reverse(arr, arr + k - 1);//逆序左边
+//	reverse(arr + k, arr + len - 1);//逆序右边
+//	reverse(arr, arr + len - 1);//逆序整体
+//}
+//
+//int main()
+//{
+//	char arr[] = "abcdef";
+//	left_move(arr, 2);
+//	printf("%s", arr);
+//	return 0;
+//}
+
+
+
+////写一个函数，判断一个字符串是否为另外一个字符串旋转之后的字符串
+// 方法1：
+//void reverse(char* start, char* end)
+//{
+//	assert(start);
+//	assert(end);
+//	while (start <= end)
+//	{
+//		char tmp = *start;
+//		*start = *end;
+//		*end = tmp;
+//		start++;
+//		end--;
+//	}
+//}
+//void left_move(char* arr, int k)
+//{
+//	int len = strlen(arr);
+//	assert(k <= len);
+//	reverse(arr, arr + k - 1);//逆序左边
+//	reverse(arr + k, arr + len - 1);//逆序右边
+//	reverse(arr, arr + len - 1);//逆序整体
+//}
+//int is_left_move(char* arr1,char*arr2)
+//{
+//	int len = strlen(arr1);
+//	int k = 0;
+//	for (k = 0; k <= len; k++)
+//	{
+//		left_move(arr1, 1);
+//		if ((strcmp(arr1, arr2)) == 0)
+//			return 1;
+//	}
+//	return 0;
+//}
+//
+//int main()
+//{
+//	char arr1[] = "AABCD";
+//	char arr2[] = "BCDAA";//arr2是旋转得来的
+//	int ret=is_left_move(arr1, arr2);
+//	if (ret == 1)
+//		printf("YES\n");
+//	else    
+//		printf("NO\n");
+//	return 0;
+//}
+
+
+//写一个函数，判断一个字符串是否为另外一个字符串旋转之后的字符串
+//方法2：
+//abcdef abcdef   列举出了所有旋转的情况
+//想要判断一个字符串是否为另外一个字符串旋转之后的字符串，相当于判断abcdef abcdef是否有arr2的子串（是否有交集）
+//int is_left_move(char* arr1, char* arr2)
+//{
+//	int len1 = strlen(arr1);
+//	int len2 = strlen(arr2);
+//	if (len1 != len2)
+//		return 0;
+//	//给arr1后面加上一个arr1的字符串
+//	//加 除自己以外的东西 时，使用strcat(加在哪个地方,加什么内容)
+//	//但是，加自己的话，使用strncat(加在哪个地方,加什么内容,加多少个)
+//	strncat(arr1, arr1, len1);//arr1-----abcdefabcdef
+//	//判断arr2是否是arr1的子串
+//	//使用strstr(arr1,arr2)   主体放前面，子串放后面,---是的话返回地址，不是就返回NULL
+//	char* ret=strstr(arr1, arr2);
+//	if (ret == NULL)
+//		return 0;
+//	else
+//		return 1;
+//}
+//
+//int main()
+//{
+//	char arr1[30] = "abcdef";
+//	char arr2[] = "cdefab";
+//	int ret=is_left_move(arr1, arr2);
+//	if (ret == 1)
+//		printf("YES\n");
+//	else
+//		printf("NO\n");
+//	return 0;
+//}
+
+
+
+//练习29.
+//杨氏矩阵
+//有一个数组矩阵，矩阵的每行从左到右是递增的，
+//矩阵从上到下是递增的，编写一个函数，在矩阵中查找一个数字是否存在
+//如：
+//1 2 3
+//3 4 5
+//5 6 7
+
+//思路：从右上角找，比大小
+//int Find_num(int arr[3][3], int* row, int* col, int k)
+//{
+//	int x = 0;
+//	int y = *col - 1;
+//	while (x < *row && y >= 0)
+//	{
+//		if (arr[x][y] > k)
+//		{
+//			y--;
+//		}
+//		else if (arr[x][y] < k)
+//		{
+//			x++;
+//		}
+//		else
+//		{
+//			*row = x;
+//			*col = y;
+//			return 1;
+//		}
+//	}
+//	return 0;		
+//}
+//
+//
+//int main()
+//{
+//	int arr[3][3] = { {1,2,3},{3,4,5},{5,6,7} };
+//	int k = 0;
+//	scanf_s("%d", &k);
+//	int x = 3;
+//	int y = 3;
+//	int ret=Find_num(arr, &x, &y, k);
+//	if (ret == 1)
+//	{
+//		printf("找到了\n");
+//		printf("下标是：%d %d", x, y);
+//	}
+//	else
+//		printf("找不到\n");
+//	return 0;
+//}
