@@ -5661,3 +5661,356 @@
 //		printf("找不到\n");
 //	return 0;
 //}
+
+
+
+//复习判断旋转字符串
+//void reverse(char* start, char* end)
+//{
+//	while (start <= end)
+//	{
+//		char tmp = *start;
+//		*start = *end;
+//		*end = tmp;
+//		start++;
+//		end--;
+//	}
+//}
+//void left_move(char* arr, int k)
+//{
+//	int len = strlen(arr);
+//	reverse(arr, arr + k - 1);
+//	reverse(arr + k, arr + len - 1);
+//	reverse(arr, arr + len - 1);
+//}
+//int is_left_move(char* arr1, char* arr2)
+//{
+//	int len1 = strlen(arr1);
+//	int len2 = strlen(arr2);
+//	if (len1 != len2)
+//		return 0;
+//	strncat(arr1, arr1, len1);
+//	if ((strstr(arr1, arr2)) == NULL)
+//		return 0;
+//	else
+//		return 1;
+//	
+//}
+//int main()
+//{
+//	char arr1[] = "abcdef";
+//	char arr2[] = "cdefab";
+//	int ret=is_left_move(arr1, arr2);
+//	if (ret == 1)
+//		printf("YES\n");
+//	else
+//		printf("NO\n");
+//	return 0;
+//}
+
+//复习杨氏矩阵
+//1 2 3
+//4 5 6
+//7 8 9
+//int Findnum(int arr[3][3], int* px, int* py, int k)
+//{
+//	int x = 0;
+//	int y = *py - 1;
+//	while (x <= px - 1 && y >= 0)
+//	{
+//		if (arr[x][y] > k)
+//			y--;
+//		if (arr[x][y] < k)
+//			x++;
+//		if (arr[x][y] == k)
+//		{
+//			*px = x;
+//			*py = y;
+//			return 1;
+//		}
+//	}
+//	return 0;
+//}
+//int main()
+//{
+//	int arr[3][3] = { {1,2,3},{4,5,6},{7,8,9} };
+//	int k = 0;
+//	scanf_s("%d", &k);
+//	int x = 3;
+//	int y = 3;
+//	int ret = Findnum(arr, &x, &y, k);
+//	if (ret == 1)
+//	{
+//		printf("找到了\n");
+//		printf("下标是：%d,%d", x, y);
+//	}
+//	else
+//		printf("找不到\n");
+//	return 0;
+//}
+
+//strlen:计算字符串长度，遇到'\0'停下
+//size_t strlen(const char*str);
+//size_t 表示strlen的返回值是无符号数
+//strlen计算的是'\0'之前的字符个数
+//参数所指向的字符串必须包含'\0'
+
+//int main()
+//{
+//	//程序运行结果？
+//	//打印hehe，因为strlen返回的是 无符号数 ！
+//	if ((strlen("abc") - strlen("abcdef")) > 0)
+//		printf("hehe\n");
+//	else
+//		printf("haha\n");
+//	return 0;
+//}
+
+//模拟strlen
+//int my_strlen(const char* arr)
+//{
+//  assert(arr);
+//	char* start = arr;
+//	char* end = arr;
+//	while (*end)
+//	{
+//		end++;
+//	}
+//	return end - start;
+//}
+
+//int my_strlen(const char* arr)
+//{
+//  assert(arr);
+//	int count = 0;
+//	while (*arr)
+//	{
+//		count++;
+//		arr++;
+//	}
+//	return count;
+//}
+//
+//int my_strlen(const char* arr)
+//{
+//  assert(arr);
+//	if (*arr != '\0')
+//		return 1 + my_strlen(arr + 1);
+//}
+//
+//int main()
+//{
+//	char arr[] = "abcdef";
+//	int len=my_strlen(arr);
+//	printf("%d", len);
+//	return 0;
+//}
+
+//strcpy(char*dest,const char*src)   字符串拷贝
+//dest必须有足够的空间，src必须包含'\0'
+//dest必须可变
+
+//模拟strcpy
+//char* my_strcpy(char* dest, const char* src)
+//{
+//  assert(dest);
+//  assert(src);
+//	char* tmp = dest;
+//	while (*dest++ = *src++)
+//	{
+//		;
+//	}
+//	return tmp;
+//}
+//int main()
+//{
+//	char arr1[30] = "abcdef";
+//	char arr2[] = "hello world";
+//	char* ret = my_strcpy(arr1, arr2);
+//	printf("%s", ret);
+//	return 0;
+//}
+
+//strcat(char*dest,const char*src)  追加字符串
+//src必须以'\0'结尾
+//dest必须有足够大的空间，dest必须可修改
+
+////模拟strcat
+//char* my_strcat(char* dest, const char* src)
+//{
+//	assert(dest);
+//	assert(src);
+//	char* ret = dest;
+//	while (*dest)
+//	{
+//		dest++;
+//	}
+//	while (*dest++ = *src++)
+//	{
+//		;
+//	}
+//	return ret;
+//}
+//int main()
+//{
+//	char arr1[30] = "hehe ";
+//	char arr2[] = "world";
+//	char* ret = my_strcat(arr1, arr2);
+//	printf("%s\n", ret);
+//	return 0;
+//}
+
+
+//strcmp(const char*arr1,const char*arr2)
+//比较字符串，从首元素开始比较，比较的是的ASCII码值
+//如果第一对的ASCII码值相等，则比较下一对的ASCII码值
+//如果arr1>arr2,就返回大于零的数
+//如果arr1==arr2,就返回0
+//如果arr1<arr2,就返回小于零的数
+
+//模拟strcmp
+//int my_strcmp(const char* p1, const char* p2)
+//{
+//	assert(p1 && p2);
+//	while (*p1 == *p2)
+//	{
+//		if (*p1 == '\0')
+//		{
+//			return 0;
+//		}
+//		p1++;
+//		p2++;
+//	}
+//	return *p1 - *p2;
+//}
+//int main()
+//{
+//	char* arr1 = "abcdef";
+//	char* arr2 = "abcqwer";
+//	int ret = my_strcmp(arr1, arr2);
+//	printf("%d", ret);
+//	return 0;
+//}
+
+
+
+//strncpy(char*dest,const char*src,size_t num)
+//拷贝指定的字符串数量
+//拷贝num个字符从src到dest
+//如果src的字符串长度小于num，则在拷贝完src后补'\0',直到num个（scr的字符个数+'\0'个数）==num
+
+
+//模拟strncpy  
+//char* my_strncpy(char* dest, const char* src, int num)
+//{
+//	assert(dest && src);
+//	char* tmp = dest;
+//	int i = 0;
+//	while (*dest)
+//	{
+//		dest++;
+//	}
+//	if ((strlen(src) + 1) >= num)
+//	{
+//		for (i = 0; i < num; i++)
+//		{
+//			*dest++ = *src++;
+//		}
+//	}
+//	else if (((strlen(src) + 1) < num))
+//	{
+//		while (*dest++ = *src++)
+//		{
+//			num--;
+//		}
+//		if (num)
+//		{
+//			num -= 1;
+//			while (num)
+//			{
+//				*dest = '\0';
+//				num--;
+//				dest++;
+//			}
+//		}
+//	}
+//	return tmp;
+//}
+
+//简化：
+//char* my_strncpy(char* dest, const char* src, int num)
+//{
+//	assert(dest && src);
+//	char* tmp = dest;
+//	int len = strlen(src);
+//	while (*dest)
+//	{
+//		dest++;
+//	}
+//	if ((len + 1) >= num)
+//	{
+//		int i = 0;
+//		for (i = 0; i < num; i++)
+//		{
+//			*dest++ = *src++;
+//		}
+//	}
+//	else
+//	{
+//		while (*dest++=*src++)
+//		{
+//			num--;
+//		}
+//		num -= 1;
+//		while (num)
+//		{
+//			*dest++ = '\0';
+//			num--;
+//		}
+//	}
+//	return tmp;
+//}
+//int main()
+//{
+//	char arr1[100] = "hello";
+//	char arr2[] = "bit xixihaha";
+//	char* p = my_strncpy(arr1, arr2, 3);
+//	printf("%s", p);
+//	return 0;
+//}
+
+
+//strncat(char*dest;const char*src,size_t num)
+//追加指定的字符串数量
+//如果src的字符串长度小于num，那直接追加完整个src即可，就不用理了
+
+//模拟strcat
+//char* my_strncat(char* dest, const char* src, int num)
+//{
+//	assert(dest && src);
+//	char* tmp = dest;
+//	while (*dest)
+//	{
+//		dest++;
+//	}
+//	int i = 0;
+//	int len = strlen(src);
+//	if (num < len)
+//	{
+//		for (i = 0; i < num; i++)
+//		{
+//			*dest++ = *src++;
+//		}
+//	}
+//	else
+//		while (*dest++ = *src++);
+//	return tmp;
+//}
+//int main()
+//{
+//	char arr1[20] = "hello";
+//	char arr2[] = "bit";
+//	char* ret = my_strncat(arr1, arr2, 5);
+//	printf("%s", ret);
+//	return 0;
+//}
