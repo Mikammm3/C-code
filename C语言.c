@@ -5984,7 +5984,7 @@
 //追加指定的字符串数量
 //如果src的字符串长度小于num，那直接追加完整个src即可，就不用理了
 
-//模拟strcat
+//模拟strncat
 //char* my_strncat(char* dest, const char* src, int num)
 //{
 //	assert(dest && src);
@@ -6012,5 +6012,303 @@
 //	char arr2[] = "bit";
 //	char* ret = my_strncat(arr1, arr2, 5);
 //	printf("%s", ret);
+//	return 0;
+//}
+
+
+
+
+
+//复习模拟strcat
+//char* my_strcat(char* str1, const char* str2)
+//{
+//	assert(str1 && str2);
+//	char* tmp = str1;
+//	while (*str1)
+//	{
+//		str1++;
+//	}
+//	while (*str1++ = *str2++)
+//	{
+//		;
+//	}
+//	return tmp;
+//}
+//int main()
+//{
+//	char arr1[30] = "abc";
+//	char arr2[] = "def";
+//	char* ret = my_strcat(arr1, arr2);
+//	printf("%s", ret);
+//	return 0;
+//}
+
+////复习模拟strcmp
+//int my_strcmp(const char* str1, const char* str2)
+//{
+//	assert(str1 && str2);
+//	while (*str1 == *str2)
+//	{
+//		if (*str1 == '\0')
+//			return 0;
+//		str1++;
+//		str2++;
+//	}
+//	return *str1 - *str2;
+//}
+//int main()
+//{
+//	char arr1[] = "abcdef";
+//	char arr2[] = "cdefg";
+//	int ret = my_strcmp(arr1, arr2);
+//	printf("%d", ret);
+//	return 0;
+//}
+
+
+////复习模拟strncpy
+//char* my_strncpy(char* dest, const char* src, int num)
+//{
+//	assert(dest && src);
+//	char* tmp = dest;
+//	while (*dest)
+//	{
+//		dest++;
+//	}
+//	int i = 0;
+//	int len = strlen(src);
+//	if (len + 1 >= num)
+//	{
+//		for (i = 0; i < num; i++)
+//		{
+//			*dest++ = *src++;
+//		}
+//	}
+//	else
+//	{
+//		while (*dest++ = *src++)
+//		{
+//			num--;
+//		}
+//		num--;
+//		while (num)
+//		{
+//			*dest = '\0';
+//			dest++;
+//			num--;
+//		}
+//	}
+//	return tmp;
+//}
+//
+//int main()
+//{
+//	char arr1[50] = "abdcef\0xxxxxxxxxxxxxxxxxx";
+//	char arr2[] = "hello,world";
+//	char* ret = my_strncpy(arr1, arr2, 15);
+//	printf("%s", ret);
+//	return 0;
+//}
+
+////复习模拟strncat
+//char* my_strncat(char* dest, const char* src, int num)
+//{
+//	assert(dest && src);
+//	char* tmp = dest;
+//	while (*dest)
+//	{
+//		dest++;
+//	}
+//	int len = strlen(src);
+//	if (len + 1 <= num)
+//	{
+//		while (*dest++ = *src++);
+//	}
+//	else
+//	{
+//		int i = 0;
+//		for (i = 0; i < num; i++)
+//		{
+//			*dest++ = *src++;
+//		}
+//	}
+//	return tmp;
+//}
+//int main()
+//{
+//	char arr1[30] = "abcdef";
+//	char arr2[] = " hehexxoo";
+//	char* ret = my_strncat(arr1, arr2, 10);
+//	printf("%s", ret);
+//	return 0;
+//}
+
+//strncmp(const char*str1,const char*str2,size_t num)
+//比较对应num对的字符串大小
+//s1>s2 返回大于零的数
+//s1==s2,返回0
+//s1<s2 返回小于零的数
+
+
+//模拟strncmp
+//int my_strcmp(const char* str1, const char* str2, int num)
+//{
+//	assert(str1 && str2);
+//	int i = 0;
+//	int tmp = 0;
+//	for (i = 0; i < num; i++)
+//	{
+//		while (*str1 == *str2)
+//		{
+//			str1++;
+//			str2++;
+//		}
+//		tmp = *str1 - *str2;
+//		str1++;
+//		str2++;
+//	}
+//
+//	return tmp;
+//}
+//int main()
+//{
+//	char* arr1 = "abcdef";
+//	char* arr2 = "abefg";
+//	int ret = my_strcmp(arr1, arr2, 7);
+//	printf("%d", ret);
+//	return 0;
+//}
+
+
+
+//strstr(const char*dest,const char*src)
+//查找dest中src的子串
+//找到了就返回地址，找不到就返回NULL
+
+
+//模拟strstr,   多复习复习
+//abbbcef
+//bbcc
+//char* my_strstr(const char* dest, const char* src)
+//{
+//	assert(dest && src);
+//	char* p1 = dest;//用来代替dest
+//	char* p2 = src;//用来代替src
+//	char* cur = dest;//用来标记
+//	if (p2 == '\0')
+//		return p1;
+//	while (*cur)
+//	{
+//		p1 = cur;
+//		p2 = src;
+//		while (*p1 && *p2 && (*p1 == *p2))
+//		{
+//			p1++;
+//			p2++;
+//		}
+//		if (*p2 == '\0')
+//			return cur;
+//		cur++;
+//	}
+//	return NULL;
+//}
+//int main()
+//{
+//	const char* arr1 = "abbbcdef";
+//	const char* arr2 = "bbc";
+//	char* ret = my_strstr(arr1, arr2);
+//	if (ret == NULL)
+//		printf("找不到\n");
+//	else
+//		printf("%s", ret);
+//	return 0;
+//}
+
+
+
+//char* strtok(char*str ,const char*sep)
+//分割字符串,sep  separator  分割符
+//传第二个参数的是分隔符的字符串
+//str所指向的字符串是由sep所指向的字符串所分割而成的
+//strtok会找str中的分割符，找到分割符后将其改为'\0'，
+//然后返回一个指向这个标记的指针
+//strtok会改变被操作的字符串，所以应该先将其拷贝一份，再来切割
+//传strtok的第一个参数不为NULL（第一次用strtok就传首元素地址）
+//第二次及以上就传NULL
+//如果字符串中不存在更多的标记，就传NULL
+
+////例子：
+//int main()
+//{
+//	char arr[] = "zpw@bitedu.tech";
+//	char* p = "@.";//这个就相当于sep
+//	char* i = 0;
+//	//使用示范
+//	for (i = strtok(arr, p); i != NULL; i = strtok(NULL, p))
+//	{
+//		printf("%s\n", i);
+//	}
+//	//strtok(arr, p);
+//	return 0;
+//}
+
+
+
+//char*strerror(int num)
+//将错误码翻译成错误信息
+//使用要，引用头文件errno.h
+
+#include<errno.h>
+//errno是一个错误码的全局变量
+//当C语言调试的过程中，出现了错误，errno会将对应的错误码记录下来
+
+
+//字符分类函数
+//函数         是真的话返回非零值
+
+//iscntrl      任何控制字符
+
+//isspace      空格，\f换页，\n,\r回车,制表符\t,垂直制表符\v
+
+//isdigit      0-9
+
+//isxdigit     0-9,A-F,a-f
+
+//islower      a-z
+
+//isupper      A-Z
+
+//isalpha     字母
+
+//isalnum     字母或者数字
+
+//ispunct     标点符号
+
+//isgraph     任何图形字符
+
+//isprint     任何可打印字符，包括图形字符和空白字符
+
+
+
+//字符转换
+
+//int tolower(int c)
+
+//int toupper(int c)
+
+//int main()
+//{
+//	char arr[] = "I AM A STUDENT.";
+//	int i = 0;
+//	while (arr[i])
+//	{
+//		if (isupper(arr[i]))
+//		{
+//			arr[i] = tolower(arr[i]);
+//
+//		}
+//		i++;
+//	}
+//	printf("%s", arr);
 //	return 0;
 //}
