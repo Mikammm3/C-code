@@ -93,108 +93,108 @@
 //}
 //int main()
 //{
-	/*int a = 10;
-	int b = 20;
-	int max = MAX(a, b);
-	printf("max=%d\n", max);*/
-	/*int a = 10;
-	int b = 20;
-	int max = Max(a, b);
-	printf("max=%d\n", max);*/
-	//#include  <stdio.h>
-	//int main()
-	//{
-	//	int a = 100;
-	//	printf(" % p\n", &a);
-	//	int* p = &a;
-	//	*p = 20;
-	//	printf("%p\n",& *p);
-	//
-	//
-	//
-	//	return 0;
-	//}
+    /*int a = 10;
+    int b = 20;
+    int max = MAX(a, b);
+    printf("max=%d\n", max);*/
+    /*int a = 10;
+    int b = 20;
+    int max = Max(a, b);
+    printf("max=%d\n", max);*/
+    //#include  <stdio.h>
+    //int main()
+    //{
+    //	int a = 100;
+    //	printf(" % p\n", &a);
+    //	int* p = &a;
+    //	*p = 20;
+    //	printf("%p\n",& *p);
+    //
+    //
+    //
+    //	return 0;
+    //}
 
-	//以后在VS中使用scanf应换成scanf_s
-
-
-	//#include  <stdio.h>
-	//int main()
-	//{
-	////判断一个数是否为奇数
-	//	printf("请输入一个整数");
-	//	int a = 0;
-	//	scanf_s("%d", &a);
-	//	if (1 == a % 2)
-	//		printf("该数为一个奇数，且值为%d\n", a);
-	//	else
-	//		printf("该数为一个偶数,数值为%d\n", a);
-	//
-	//	return 0;
-	//}
+    //以后在VS中使用scanf应换成scanf_s
 
 
+    //#include  <stdio.h>
+    //int main()
+    //{
+    ////判断一个数是否为奇数
+    //	printf("请输入一个整数");
+    //	int a = 0;
+    //	scanf_s("%d", &a);
+    //	if (1 == a % 2)
+    //		printf("该数为一个奇数，且值为%d\n", a);
+    //	else
+    //		printf("该数为一个偶数,数值为%d\n", a);
+    //
+    //	return 0;
+    //}
 
-	//判断一个数是否为奇数，并且列出1-100的奇数
 
-	//#include<stdio.h>
-	//int main()
-	//{
-	//	int a = 1;
-	//	while (a <= 100)
-	//
-	//	{
-	//		if (1 == a % 2 && a <= 100)
-	//		{
-	//			printf("该数为奇数,且数值为%d\n", a);
-	//			a++;
-	//		}
-	//		else
-	//		{
-	//			printf("该数为偶数,且数值为%d\n", a);
-	//			a++;
-	//		}
-	//	}
-	//
-	//
-	//	return 0;
-	//}
-	//#include<stdio.h>
-	//int main()
-	//{
-	//	int day = 0;
-	//	printf("请输入一周中的某一天\n(1,2,3,4,5,6,7,)>:");//   >:是提示的意思，输入在双引号内，表达式放在>:的前面
-	//	scanf_s("%d\n",&day); //使用scanf时别忘记加  &                                      //用法:(表达式)>:
-	//	switch (day)
-	//	{
-	//	case 1://别忘记加:    一般情况下，每个case的结尾都加break;
-	//		printf("星期一\n");
-	//		break;
-	//	case 2:
-	//		printf("星期二\n");
-	//		break;
-	//	case 3:
-	//		printf("星期三\n");
-	//		break;
-	//	case-4:
-	//		printf("星期四\n");
-	//		break;//终止的意思，跳出switch语句
-	//	case 5:
-	//		printf("星期五\n");
-	//		break;
-	//	case 6:
-	//		printf("星期六\n");
-	//		break;
-	//	case 7:
-	//		printf("星期天\n");
-	//		break;
-	//	default://除了以上case的情况使用default
-	//		printf("输入错误，请重新输入\n");
-	//		break;
-	//	}
-	//	return 0;
-	//
-	//}
+
+    //判断一个数是否为奇数，并且列出1-100的奇数
+
+    //#include<stdio.h>
+    //int main()
+    //{
+    //	int a = 1;
+    //	while (a <= 100)
+    //
+    //	{
+    //		if (1 == a % 2 && a <= 100)
+    //		{
+    //			printf("该数为奇数,且数值为%d\n", a);
+    //			a++;
+    //		}
+    //		else
+    //		{
+    //			printf("该数为偶数,且数值为%d\n", a);
+    //			a++;
+    //		}
+    //	}
+    //
+    //
+    //	return 0;
+    //}
+    //#include<stdio.h>
+    //int main()
+    //{
+    //	int day = 0;
+    //	printf("请输入一周中的某一天\n(1,2,3,4,5,6,7,)>:");//   >:是提示的意思，输入在双引号内，表达式放在>:的前面
+    //	scanf_s("%d\n",&day); //使用scanf时别忘记加  &                                      //用法:(表达式)>:
+    //	switch (day)
+    //	{
+    //	case 1://别忘记加:    一般情况下，每个case的结尾都加break;
+    //		printf("星期一\n");
+    //		break;
+    //	case 2:
+    //		printf("星期二\n");
+    //		break;
+    //	case 3:
+    //		printf("星期三\n");
+    //		break;
+    //	case-4:
+    //		printf("星期四\n");
+    //		break;//终止的意思，跳出switch语句
+    //	case 5:
+    //		printf("星期五\n");
+    //		break;
+    //	case 6:
+    //		printf("星期六\n");
+    //		break;
+    //	case 7:
+    //		printf("星期天\n");
+    //		break;
+    //	default://除了以上case的情况使用default
+    //		printf("输入错误，请重新输入\n");
+    //		break;
+    //	}
+    //	return 0;
+    //
+    //}
 //#include<stdio.h>
 //int main()
 //{
@@ -577,7 +577,7 @@
 //}
 
 
-	
+    
 
 //练习2.1-100,打印三的倍数的数
 
@@ -601,41 +601,41 @@
 
 /*int main()
 {
-	
-	int m = 0;
-	int n = 0;
-	scanf_s("%d%d",&m,&n);
-	if (m > n)
-	{
-		int i = m % n;
-		if (i == 0)
-			printf("最大公约数为%d", n);
-		if (i != 0)
-		{
-			for (i;; i++)
-			{
-				if (m % i == 0 && n % i == 0)
-					printf("最大公约数为%d", i);
-			}
-		}
-	}
-	if (m < n)
-	{
-		int i = n % m;
-		if (i == 0)
-			printf("最大公约数为%d",m);
-		if (i != 0)
-		{
-			for (i;; i++)
-			{
-				if (m % i == 0 && n % i == 0)
-					printf("最大公约数为%d", i);
-			}
-		}
-	}
-	if (m==n)
-		printf("最大公约数为%d", n);
-	return 0;
+    
+    int m = 0;
+    int n = 0;
+    scanf_s("%d%d",&m,&n);
+    if (m > n)
+    {
+        int i = m % n;
+        if (i == 0)
+            printf("最大公约数为%d", n);
+        if (i != 0)
+        {
+            for (i;; i++)
+            {
+                if (m % i == 0 && n % i == 0)
+                    printf("最大公约数为%d", i);
+            }
+        }
+    }
+    if (m < n)
+    {
+        int i = n % m;
+        if (i == 0)
+            printf("最大公约数为%d",m);
+        if (i != 0)
+        {
+            for (i;; i++)
+            {
+                if (m % i == 0 && n % i == 0)
+                    printf("最大公约数为%d", i);
+            }
+        }
+    }
+    if (m==n)
+        printf("最大公约数为%d", n);
+    return 0;
 }*/
 
 
@@ -6543,3 +6543,159 @@
 //	memset(arr, '#', 10);
 //	return 0;
 //}
+
+
+
+
+
+
+////第二次复习模拟strstr
+//char* my_strstr(const char* dest, const char* src)
+//{
+//    assert(dest && src);
+//    if (src == '\0')
+//        return dest;
+//    else
+//    {
+//        char* cur = dest;
+//        char* s1 = dest;
+//        char* s2 = src;
+//        while (*cur)
+//        {
+//            s1 = cur;
+//            s2 = src;
+//            while (*s1 != *s2)
+//            {
+//                s1++;
+//            }
+//            while ((*s1 == *s2) && (*s1 != '\0') && (*s2 != '\0'))
+//            {
+//                s1++;
+//                s2++;
+//            }
+//            if (*s2 == '\0')
+//                return cur;
+//            cur++;
+//        }
+//        return NULL;
+//    }
+//}
+//
+//int main()
+//{
+//    char* arr1 = "abbbcdef";
+//    char* arr2 = "bbc";
+//    char*ret=my_strstr(arr1, arr2);
+//    if (ret == NULL)
+//    {
+//        printf("找不到\n");S
+//    }
+//    else
+//        printf("%s\n", ret);
+//    return 0;
+//}
+
+
+
+//复习模拟memmove
+//1 2 3 4 5
+//3 4 5 6 7
+//void* my_memmove(void* dest, const void* src, size_t num)
+//{
+//    assert(dest && src);
+//    void* tmp = dest;
+//    if (dest < src)
+//    {
+//        while (num--)
+//        {
+//            *(char*)dest = *(char*)src;
+//            ++(char*)dest;
+//            ++(char*)src;
+//        }
+//    }
+//    else
+//    {
+//        while (num--)
+//        {
+//            *((char*)dest + num) = *((char*)src + num);
+//        }
+//    }
+//    return tmp;
+//}
+//int main()
+//{
+//    int arr[] = { 1,2,3,4,5,6,7,8,9,10 };
+//    void* ret = my_memmove(arr + 2, arr, 20);
+//    return 0;
+//}
+
+
+//内置类型-C语言自己的数据类型
+//char short int long double float
+
+//复杂对象（如人，书等）---复杂类型
+//自定义类型：结构体  枚举  联合体
+
+//结构体
+//结构体是一些值的集合，这些值称为成员变量，
+//结构体的成员可以是不同类型的变量
+//struct tag
+//{
+// member_list;
+// 
+//}variable-list;
+
+//结构体的内存对齐规则
+//1.第一个成员变量放在结构体偏移值为0的地址处
+
+//2.其他成员变量放在对齐数整数倍的地址处
+
+//对齐数=编译器默认的对齐数  与  变量类型  中的较小值
+
+//3.结构体的总大小是成员变量的最大对齐数的整数倍
+
+//4.如果是嵌套struct，嵌套的结构体的应该放在自己的最大对齐数的整数倍
+
+//在设计结构体类型时，要将较小的成员变量放在前面,最好就放在一起
+
+
+//struct S
+//{
+//    char a;//1/8 ===1
+//    char b;//1/8 ==1
+//    int i;// 4/8 ===4
+//};
+////S是标签名，把标签名省略的结构体叫藏匿结构体,一般情况下，不要把标签名省略
+////因为藏匿结构体只能使用一次，而且只能在struct{......}    和   ;  之间定义变量
+////使用起来较为麻烦
+//int main()
+//{
+//    //练习
+//    struct S s = { 0 };
+//    printf("%d\n", sizeof(s));//8
+//    return 0;
+//}
+
+
+//#pragma pack(num)
+//设置对齐数,num一般是2的倍数
+//#pragma pack()
+//取消设置的对齐数
+
+//#pragma pack(4)
+//struct S
+//{
+//    char c;
+//    double d;
+//};
+//#pragma pack()
+//int main()
+//{
+//    struct S s = { 0 };
+//    printf("%d\n", sizeof(s));
+//}
+
+
+//size_t offsetof(structName,memberName)
+//计算结构体成员变量的偏移量的大小
+// offsetof是宏
