@@ -6312,3 +6312,234 @@
 //	printf("%s", arr);
 //	return 0;
 //}
+
+
+
+
+
+
+
+
+//第二次复习模拟strncpy
+//char* my_strncpy(char* dest, const char* src, int num)
+//{
+//	assert(dest && src);
+//	char* tmp = dest;
+//	int len = strlen(src);
+//	int i = 0;
+//	if (len + 1 >= num)
+//	{
+//		for (i = 0; i < num; i++)
+//		{
+//			*dest++ = *src++;
+//		}
+//	}
+//	else 
+//	{
+//		while (*dest++ = *src++)
+//		{
+//			num--;
+//		}
+//		num--;
+//		while (num)
+//		{
+//			*dest++ = '\0';
+//			num--;
+//		}
+//	}
+//	return tmp;
+//}
+//
+//int main()
+//{
+//	char arr1[30] = "abcdef\0xxxxxxxxxxxxxxx";
+//	char arr2[] = "higklmn";
+//	char* ret = my_strncpy(arr1, arr2, 15);
+//	printf("%s", ret);
+//	return 0;
+//}
+
+
+
+
+//第二次复习模拟strncat
+//char* my_strncat(char* dest, const char* src, int num)
+//{
+//	assert(dest && src);
+//	char* tmp = dest;
+//	int len = strlen(src);
+//	while (*dest)
+//	{
+//		dest++;
+//	}
+//	int i = 0;
+//	if (len + 1 >= num)
+//	{
+//		for (i = 0; i < num; i++)
+//		{
+//			*dest++ = *src++;
+//		}
+//	}
+//	else
+//	{
+//		while (*dest++ = *src++);
+//	}
+//	return tmp;
+//}
+//int main()
+//{
+//	char arr1[30] = "abcdef";
+//	char arr2[] = "hello bit";
+//	char* ret = my_strncat(arr1, arr2, 10);
+//	printf("%s", ret);
+//	return 0;
+//}
+
+
+//复习模拟strstr
+//char* my_strstr(const char* dest, const char* src)
+//{
+//	assert(dest && src);
+//	if (*src == '\0')
+//		return dest;
+//	else
+//	{
+//		char* s1 = dest;
+//		char* s2 = src;
+//		char* cur = dest;
+//		while (*cur)
+//		{
+//			s1 = cur;
+//			s2 = src;
+//			while (*s1 != *s2)
+//			{
+//				s1++;
+//			}
+//			while ((s1 != '\0') && (s2 != '\0') && (*s1 == *s2))
+//			{
+//				s1++;
+//				s2++;
+//			}
+//			if (*s2 == '\0')
+//				return cur;
+//			cur++;
+//		}
+//		return NULL;
+//	}
+//}
+//int main()
+//{
+//	char* arr1 = "abbbcdef";
+//	char* arr2 = "bcdef";
+//	char* ret = my_strstr(arr1, arr2);
+//	printf("%s", ret);
+//	return 0;
+//}
+
+
+
+//void* memcpy(char*dest,const char*src,size_t num)
+//内存数据拷贝，可以拷贝任何类型的数据，如结构体，小数整数，字符等
+//该函数遇到\0也不会停止
+//memcpy会从src开始向后拷贝num个字节的数据到dest的位置
+//src和dest不可以有任何重叠部分
+
+//模拟memcpy
+//1 2 3 4 5
+//6 7 8 9 10
+//void* my_memcpy(void* dest, const void* src, size_t num)
+//{
+//	assert(dest && src);
+//	void* tmp = dest;
+//	int i = 0;
+//	for (i = 0; i < num; i++)
+//	{
+//		*(char*)dest = *(char*)src;
+//		++(char*)dest;
+//		++(char*)src;
+//	}
+//	return tmp;
+//}
+//struct stu
+//{
+//	char name[20];
+//	int age;
+//};
+//int main()
+//{
+//	struct stu s1[3] = { {"张三",20},{"李四",30} };
+//	struct stu s2[3] = { 0 };
+//	my_memcpy(s2, s1,sizeof(s1));
+//	return 0;
+//}
+
+
+//void* memmove(void*dest,const void*src,size_t num)
+//拷贝dest和src有重叠部分的数据，和memcpy相似，
+//但是memmove既能拷贝没有重叠的数据，也能拷贝有重叠的数据
+
+////模拟memmove
+////1 2 3 4 5 6 7 8 9 10
+////1 2 3 4 5
+////3 4 5 6 7 
+//void my_memmove(void* dest, const void* src, size_t num)
+//{
+//	assert(dest && src);
+//	void* tmp = dest;
+//	if (dest < src)
+//	{
+//		while (num--)
+//		{
+//			*(char*)dest = *(char*)src;
+//			++(char*)dest;
+//			++(char*)src;
+//		}
+//	}
+//	else
+//	{
+//		while (num--)
+//		{
+//			*((char*)dest + num) = *((char*)src + num);
+//		}
+//	}
+//	return tmp;
+//}
+//int main()
+//{
+//	int arr[] = { 1,2,3,4,5,6,7,8,9,10 };
+//	my_memmove(arr + 2, arr, 20);
+//	int i = 0;
+//	for (i = 0; i < 10; i++)
+//	{
+//		printf("%d ", arr[i]);
+//	}
+//	return 0;
+//}
+
+
+//int memcmp(const void*ptr1,const void*ptr2,size_t num)
+//内存比较，啥都可以比较
+//比较从ptr1和ptr2开始的num个字节
+//ptr1>ptr2,返回大于0的数
+//ptr1==ptr2,返回0
+//ptr1<ptr2,返回小于0的数
+
+//int main()
+//{
+//	int arr1[] = { 1,2,3,4,5,6 };
+//	int arr2[] = { 1,2,4,6,7,8 };
+//	int ret = memcmp(arr1, arr2, 9);
+//	printf("%d\n", ret);
+//	return 0;
+//}
+
+//memset(void*arr,int c,size_t num)
+//内存设置，int c为你想要设置的字符，
+//size_t num为设置的字节个数
+
+//int main()
+//{
+//	char arr[10] = { 0 };
+//	memset(arr, '#', 10);
+//	return 0;
+//}
