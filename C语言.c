@@ -6856,3 +6856,343 @@
 //        printf("大端\n");
 //    return 0;
 //}
+
+
+
+
+
+
+//#define MAX 1000
+//
+//#define MAX_NAME 20
+//#define MAX_SEX 20
+//#define MAX_TELE 12
+//#define MAX_ADDR 30
+//
+//
+//enum Option
+//{
+//    exit,
+//    add,
+//    del,
+//    search,
+//    modify,
+//    show,
+//    sort
+//};
+//
+//struct PeoInfo
+//{
+//    char name[MAX_NAME];
+//    char sex[MAX_SEX];
+//    char tele[MAX_TELE];
+//    int age;
+//    char addr[MAX_ADDR];
+//};
+//
+//struct Contact
+//{
+//    struct PeoInfo data[MAX];
+//    int size;
+//};
+//
+//
+//
+//
+//void AddContact(struct Contact* ps)
+//{
+//    if (ps->size == MAX)
+//        printf("通讯录已满\n");
+//    else
+//    {
+//        printf("请输入要添加人的名字:>");
+//        scanf_s("%s", ps->data[ps->size].name, MAX_NAME);
+//        printf("请输入要添加人的性别:>");
+//        scanf_s("%s", ps->data[ps->size].sex, MAX_SEX);
+//        printf("请输入要添加人的电话:>");
+//        scanf_s("%s", ps->data[ps->size].tele, MAX_TELE);
+//        printf("请输入要添加人的地址:>");
+//        scanf_s("%s", ps->data[ps->size].addr, MAX_ADDR);
+//        printf("请输入要添加人的年龄:>");
+//        scanf_s("%d", &(ps->data[ps->size].age));
+//        (ps->size)++;
+//        printf("添加成功\n");
+//    }
+//}
+//
+//static int Find(const struct Contact* ps, char name[MAX_NAME])
+//{
+//    int i = 0;
+//    for (i = 0; i < ps->size; i++)
+//    {
+//        if (strcmp(ps->data[i].name, name) == 0)
+//            return i;
+//    }
+//    return -1;
+//}
+//
+//
+//void DelContact(struct Contact* ps)
+//{
+//    char name[MAX_NAME];
+//    printf("请输入要删除的人的名字\n");
+//    scanf_s("%s", name, MAX_NAME);
+//    int pos = Find(ps, name);
+//    if (-1 == pos)
+//    {
+//        printf("要删除的人不存在\n");
+//    }
+//    else
+//    {
+//        int j = 0;
+//        for (j = pos; j < ps->size - 1; j++)
+//        {
+//            ps->data[j] = ps->data[j + 1];
+//        }
+//        ps->size--;
+//    }
+//}
+//void ShowContact(const struct Contact* ps)
+//{
+//    if (ps->size == 0)
+//        printf("该通讯录为空\n");
+//    else
+//    {
+//        int i = 0;
+//        printf("%-20s\t %-20s\t %-20s\t %-12s\t %-30s\t\n", "姓名", "性别", "年龄", "电话", "住址");
+//        for (i = 0; i < ps->size; i++)
+//        {
+//            printf("%-20s\t%-20s\t%-20d\t%-12s\t%-30s\t\n",
+//                ps->data[i].name,
+//                ps->data[i].sex,
+//                ps->data[i].age,
+//                ps->data[i].tele,
+//                ps->data[i].addr);
+//        }
+//    }
+//}
+//
+//void SearchContact(const struct Contact* ps)
+//{
+//    char name[MAX_NAME];
+//    printf("请输入要查找人的名字:>");
+//    scanf_s("%s", name, MAX_NAME);
+//    int pos = Find(ps, name);
+//    if (pos == -1)
+//        printf("该联系人不存在\n");
+//    else
+//    {
+//        printf("%-20s\t%-20s\t%-20d\t%-12s\t%-30s\t\n",
+//            ps->data[pos].name,
+//            ps->data[pos].sex,
+//            ps->data[pos].age,
+//            ps->data[pos].tele,
+//            ps->data[pos].addr);
+//    }
+//}
+//
+//void ModifyContact(struct Contact* ps)
+//{
+//    char name[MAX_NAME];
+//    printf("请输入要修改人的名字:>");
+//    scanf_s("%s", name, MAX_NAME);
+//    int pos = Find(ps, name);
+//    if (pos == -1)
+//    {
+//        printf("该联系人不存在\n");
+//    }
+//    else
+//    {
+//        printf("请输入要修改的名字:>");
+//        scanf_s("%s", ps->data[pos].name, MAX_NAME);
+//        printf("请输入要修改的性别:>");
+//        scanf_s("%s", ps->data[pos].sex, MAX_SEX);
+//        printf("请输入要修改的电话:>");
+//        scanf_s("%s", ps->data[pos].tele, MAX_TELE);
+//        printf("请输入要修改的地址:>");
+//        scanf_s("%s", ps->data[pos].addr, MAX_ADDR);
+//        printf("请输入要修改的年龄:>");
+//        scanf_s("%d", &(ps->data[pos].age));
+//        printf("修改成功\n");
+//    }
+//}
+//
+//
+//void menu()
+//{
+//    printf("**************************************\n");
+//    printf("****    1.Add         2.Del    *******\n");
+//    printf("****    3.Search      4.Modify *******\n");
+//    printf("****    5.Show        0.Exit   *******\n");
+//    printf("**************************************\n");
+//}
+//
+//void InitContact(struct Contact* ps)
+//{
+//    memset(ps->data, 0, sizeof(ps->data));
+//    ps->size = 0;
+//}
+//
+//int main()
+//{
+//    //创建一个通讯录
+//    struct Contact con;
+//    //初始化通讯录
+//    InitContact(&con);
+//    int input = 0;
+//    do
+//    {
+//        menu();
+//        printf("请输入:>");
+//        scanf_s("%d", &input);
+//        switch (input)
+//        {
+//        case add:
+//            AddContact(&con);
+//            break;
+//        case del:
+//            DelContact(&con);
+//            break;
+//        case search:
+//            SearchContact(&con);
+//            break;
+//        case modify:
+//            ModifyContact(&con);
+//            break;
+//        case show:
+//            ShowContact(&con);
+//            break;
+//        case exit:
+//            printf("退出通讯录\n");
+//            break;
+//        default:
+//            printf("输入错误\n");
+//            break;
+//        }
+//    } while (input);
+//    return 0;
+//}
+
+
+
+
+
+//动态内存分配
+//所有的函数使用前都应该引用头文件stdlib.h
+
+//void*malloc(size_t size)
+//引用stdlib.h
+//size是要开辟的空间大小
+//开辟一个size字节的空间
+//malloc若空间开辟成功，则返回地址
+//若开辟失败，则返回NULL
+//因此，使用malloc时要判断malloc空间是否开辟成功
+
+//int main()
+//{
+//    //开辟10个整型的空间
+//    int* p = (int*)malloc(10 * sizeof(int));
+//    //要判断空间是否开辟成功
+//    if (p == NULL)
+//        printf("%s\n", strerror(errno));
+//    
+//    else
+//    {
+//        int i = 0;
+//        for (i = 0; i < 10; i++)
+//        {
+//            *(p + i) = i;
+//        }
+//
+//        //不再使用动态空间后要用free释放空间
+//        free(p);
+//        p = NULL;
+//        return 0;
+//    }
+//}
+
+
+
+//void free(void*ptr)
+//释放不再使用动态开辟的空间
+//直接把地址传过去
+//如果ptr为NULL，则free啥也不做
+//引用stdlib.h
+
+
+//void*calloc(size_t num,size_t size)
+//开辟num个元素，每个元素长度为size的空间大小，并将其元素全部初始化为0
+//如果开辟成功，则返回地址
+//开辟失败，则返回NULL
+//所以使用时要判断calloc空间是否开辟成功
+//要引用头文件stdlib.h
+
+//int main()
+//{
+//    int* p = (int*)calloc(10, sizeof(int));
+//    if (p == NULL)
+//    {
+//        printf("%s\n", strerror(errno));
+//    }
+//    else
+//    {
+//        int i = 0;
+//        for (i = 0; i < 10; i++)
+//        {
+//            printf("%d ", *(p + i));
+//        }
+//    }
+//    free(p);
+//    p = NULL;
+//    return 0;
+//}
+
+
+
+//void*realloc(void*ptr,size_t size)
+//如果之前开辟的空间不够用，或者太多了，就使用realloc更改空间大小
+//ptr是要更改的空间，size是要改成的大小，单位是字节
+//如果更改成功，则返回地址
+//如果更改失败，则返回NULL
+//所以要先判断是否为NULL，再去使用空间
+//注意：
+//1.如果ptr所指向空间之后的空间足够大，就直接对ptr修改，返回ptr的地址
+//2.如果ptr所指向空间之后的空间不够大，就开辟一块新的空间，并将旧空间的数据拷贝到新空间
+//然后释放旧空间，最后realloc会返回新空间的地址
+//3.要创建一个新的地址接收realloc返回的空间地址
+
+
+//int main()
+//{
+//    int* p = (int*)calloc(5, sizeof(int));
+//    if (p == NULL)
+//    {
+//        printf("%s\n", strerror(errno));
+//    }
+//    else
+//    {
+//        int* ptr = (int*)realloc(p, 40);
+//        if (ptr == NULL)
+//        {
+//            printf("%s\n", strerror(errno));
+//        }
+//        else
+//        {
+//            p = ptr;
+//            int i = 0;
+//            for (i = 0; i < 10; i++)
+//            {
+//                *(p + i) = i;
+//            }
+//        }
+//        free(p);
+//        p = NULL;
+//    }
+//    return 0;
+//}
+
+//常见的动态内存分配错误
+//1.对NULL的解引用操作
+//2.对动态开辟空间的越界访问
+//3.对非动态开辟内存使用free
+//4.使用free释放一块动态开辟内存的一部分
