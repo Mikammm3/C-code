@@ -7191,8 +7191,165 @@
 //    return 0;
 //}
 
+
+
+//realloc也能自己开辟一个空间
+//如  int*p=(int*)realloc(NULL,40);//相当于malloc(40)
+
+
 //常见的动态内存分配错误
 //1.对NULL的解引用操作
 //2.对动态开辟空间的越界访问
 //3.对非动态开辟内存使用free
 //4.使用free释放一块动态开辟内存的一部分
+//5.对同一块动态内存多次释放
+//6.动态开辟内存忘记释放（内存泄漏）
+
+
+////练习.下面程序运行结果是啥？出了啥问题？
+//void GetMemory(char* p)
+//{
+//    p = (char*)malloc(100);
+//}
+//
+//void Test(void)
+//{
+//    char* str = NULL;
+//    GetMemory(str);//传的是值，p出了GetMemory就自动被销毁，p的改变不会影响str
+//    strcpy(str, "hello world");//所以str依旧是NULL，则这行代码无效，越界访问了，因此程序会崩溃
+//    printf(str);//相当于printf("str内容")==printf("%s",str)
+//}
+////1.程序崩溃
+////2.未进行动态内存空间的释放，可能会导致内存泄漏
+//int main()
+//{
+//    Test();
+//    return 0;
+//}
+
+//改正1.
+//char* GetMemory(char* p)
+//{
+//    p = (char*)malloc(100);
+//    return p;
+//}
+//
+//void Test(void)
+//{
+//    char* str = NULL;
+//    str=GetMemory(str);
+//    strcpy(str, "hello world");
+//    printf(str);
+//    free(str);
+//    str = NULL;
+//}
+//
+//int main()
+//{
+//    Test();
+//    return 0;
+//}
+
+
+
+//改正2
+//void GetMemory(char** p)
+//{
+//    *p = (char*)malloc(100);
+//    
+//}
+//
+//void Test(void)
+//{
+//    char* str = NULL;
+//    GetMemory(&str);
+//    strcpy(str, "hello world");
+//    printf(str);
+//    free(str);
+//    str = NULL;
+//}
+//
+//int main()
+//{
+//    Test();
+//    return 0;
+//}
+
+
+//练习2.程序运行结果是啥？有什么问题？
+//虽然打印hello world，
+//但是p是局部变量，返回局部变量的地址是不可行的，因为局部变量出了生命周期就不再存在了
+//所以把不存在的空间p传给了str，打印时非法访问了不存在的空间，属于越界访问了
+
+
+//char* GetMemory(void)
+//{
+//    char p[] = "hello world";//栈区
+//    return p;
+//}
+//void Test(void)
+//{
+//    char* str = NULL;
+//    str = GetMemory();
+//    printf(str);
+//}
+//int main()
+//{
+//    Test();
+//    return 0;
+//}
+
+
+//练习3.程序运行结果是啥？有什么问题？
+//打印hello 
+//问题是没有释放不再使用的动态开辟的空间，内存泄漏
+
+//void GetMemory(char**p,int num)
+//{
+//    *p = (char*)malloc(100);
+//}
+//void Test(void)
+//{
+//    char* str = NULL;
+//    GetMemory(&str, 100);
+//    strcpy(str, "hello");
+//    printf(str);
+//}
+//int main()
+//{
+//    Test();
+//    return 0;
+//}
+
+
+//练习4.程序运行结果是啥？有什么问题？
+//打印world
+//提前释放了str，对str越界访问了
+//free(str)后，str并不会被置为NULL，所以要手动把str置为NULL
+
+
+//void Test(void)
+//{
+//    char* str = (char*)malloc(100);
+//    strcpy(str, "hello");
+//    free(str);
+//    if (str != NULL)
+//    {
+//        strcpy(str, "world");
+//        printf(str);
+//    }
+//}
+//int main()
+//{
+//    Test();
+//    return 0;
+//}
+
+
+
+//存放数据的地方有3个
+//栈区：放局部变量，函数参数，返回数据，返回地址等
+
+//堆区：动态分配内存
+
+//静态区：存放全局变量，静态数据（static修饰的变量及函数）
